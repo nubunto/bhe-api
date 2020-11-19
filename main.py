@@ -5,7 +5,6 @@ from enum import Enum
 from pydantic import BaseModel
 from database import berths, cost_queue, database
 
-
 class ShipType(str, Enum):
     BulkCarrier = "BulkCarrier"
     Other = "Other"

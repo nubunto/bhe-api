@@ -1,12 +1,12 @@
 import sqlalchemy
-import os
 import databases
+from env import from_env
 
-user = os.environ['DB_USER']
-password = os.environ['DB_PASSWORD']
-host = os.environ['DB_HOST']
-port = os.environ['DB_PORT']
-database = os.environ['DB_DATABASE']
+user = from_env('DB_USER')
+password = from_env('DB_PASSWORD')
+host = from_env('DB_HOST')
+port = from_env('DB_PORT')
+database = from_env('DB_DATABASE')
 
 DATABASE_CONNECTION_URI = f'postgresql://{user}:{password}@{host}:{port}/{database}'
 
