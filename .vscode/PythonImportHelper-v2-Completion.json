@@ -36,11 +36,109 @@
         }
     },
     {
-        "label": "sqlalchemy",
-        "kind": 6,
-        "isExtraImport": true,
+        "label": "Column",
         "importPath": "sqlalchemy",
         "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {
+            "value": "\n```python\nimport sqlalchemy\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "Integer",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {
+            "value": "\n```python\nimport sqlalchemy\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "VARCHAR",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {
+            "value": "\n```python\nimport sqlalchemy\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "BOOLEAN",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {
+            "value": "\n```python\nimport sqlalchemy\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "FLOAT",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {
+            "value": "\n```python\nimport sqlalchemy\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "MetaData",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {
+            "value": "\n```python\nimport sqlalchemy\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "Table",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {
+            "value": "\n```python\nimport sqlalchemy\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "JSON",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {
+            "value": "\n```python\nimport sqlalchemy\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "DATETIME",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {
+            "value": "\n```python\nimport sqlalchemy\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "create_engine",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
         "detail": "sqlalchemy",
         "documentation": {
             "value": "\n```python\nimport sqlalchemy\n```\n",
@@ -60,6 +158,17 @@
         }
     },
     {
+        "label": "from_env",
+        "importPath": "env",
+        "description": "env",
+        "isExtraImport": true,
+        "detail": "env",
+        "documentation": {
+            "value": "\n```python\nimport env\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
         "label": "FastAPI",
         "importPath": "fastapi",
         "description": "fastapi",
@@ -71,7 +180,29 @@
         }
     },
     {
+        "label": "jsonable_encoder",
+        "importPath": "fastapi.encoders",
+        "description": "fastapi.encoders",
+        "isExtraImport": true,
+        "detail": "fastapi.encoders",
+        "documentation": {
+            "value": "\n```python\nimport fastapi.encoders\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
         "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {
+            "value": "\n```python\nimport datetime\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "timedelta",
         "importPath": "datetime",
         "description": "datetime",
         "isExtraImport": true,
@@ -133,6 +264,18 @@
         "detail": "database",
         "documentation": {
             "value": "\n```python\nimport database\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "math",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "math",
+        "description": "math",
+        "detail": "math",
+        "documentation": {
+            "value": "\n```python\nimport math\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -237,10 +380,10 @@
         "kind": 5,
         "importPath": "database",
         "description": "database",
-        "peekOfCode": "user = os.environ['DB_USER']\npassword = os.environ['DB_PASSWORD']\nhost = os.environ['DB_HOST']\nport = os.environ['DB_PORT']\ndatabase = os.environ['DB_DATABASE']\nDATABASE_CONNECTION_URI = f'postgresql://{user}:{password}@{host}:{port}/{database}'\ndatabase = databases.Database(DATABASE_CONNECTION_URI)\nmetadata = sqlalchemy.MetaData()\nberths = sqlalchemy.Table(\n    \"berths\",",
+        "peekOfCode": "user = from_env('DB_USER')\npassword = from_env('DB_PASSWORD')\nhost = from_env('DB_HOST')\nport = from_env('DB_PORT')\ndatabase = from_env('DB_DATABASE')\nDATABASE_CONNECTION_URI = f'postgresql://{user}:{password}@{host}:{port}/{database}'\ndatabase = databases.Database(DATABASE_CONNECTION_URI)\nmetadata = MetaData()\nberths = Table(\n    \"berths\",",
         "detail": "database",
         "documentation": {
-            "value": "\n```python\nfrom database import user\n```\n\n```python\n\n\n```\n\n```python\nuser = os.environ['DB_USER']\npassword = os.environ['DB_PASSWORD']\nhost = os.environ['DB_HOST']\nport = os.environ['DB_PORT']\ndatabase = os.environ['DB_DATABASE']\nDATABASE_CONNECTION_URI = f'postgresql://{user}:{password}@{host}:{port}/{database}'\ndatabase = databases.Database(DATABASE_CONNECTION_URI)\nmetadata = sqlalchemy.MetaData()\nberths = sqlalchemy.Table(\n    \"berths\",\n```\n",
+            "value": "\n```python\nfrom database import user\n```\n\n```python\n\n\n```\n\n```python\nuser = from_env('DB_USER')\npassword = from_env('DB_PASSWORD')\nhost = from_env('DB_HOST')\nport = from_env('DB_PORT')\ndatabase = from_env('DB_DATABASE')\nDATABASE_CONNECTION_URI = f'postgresql://{user}:{password}@{host}:{port}/{database}'\ndatabase = databases.Database(DATABASE_CONNECTION_URI)\nmetadata = MetaData()\nberths = Table(\n    \"berths\",\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -249,10 +392,10 @@
         "kind": 5,
         "importPath": "database",
         "description": "database",
-        "peekOfCode": "password = os.environ['DB_PASSWORD']\nhost = os.environ['DB_HOST']\nport = os.environ['DB_PORT']\ndatabase = os.environ['DB_DATABASE']\nDATABASE_CONNECTION_URI = f'postgresql://{user}:{password}@{host}:{port}/{database}'\ndatabase = databases.Database(DATABASE_CONNECTION_URI)\nmetadata = sqlalchemy.MetaData()\nberths = sqlalchemy.Table(\n    \"berths\",\n    metadata,",
+        "peekOfCode": "password = from_env('DB_PASSWORD')\nhost = from_env('DB_HOST')\nport = from_env('DB_PORT')\ndatabase = from_env('DB_DATABASE')\nDATABASE_CONNECTION_URI = f'postgresql://{user}:{password}@{host}:{port}/{database}'\ndatabase = databases.Database(DATABASE_CONNECTION_URI)\nmetadata = MetaData()\nberths = Table(\n    \"berths\",\n    metadata,",
         "detail": "database",
         "documentation": {
-            "value": "\n```python\nfrom database import password\n```\n\n```python\n\n\n```\n\n```python\npassword = os.environ['DB_PASSWORD']\nhost = os.environ['DB_HOST']\nport = os.environ['DB_PORT']\ndatabase = os.environ['DB_DATABASE']\nDATABASE_CONNECTION_URI = f'postgresql://{user}:{password}@{host}:{port}/{database}'\ndatabase = databases.Database(DATABASE_CONNECTION_URI)\nmetadata = sqlalchemy.MetaData()\nberths = sqlalchemy.Table(\n    \"berths\",\n    metadata,\n```\n",
+            "value": "\n```python\nfrom database import password\n```\n\n```python\n\n\n```\n\n```python\npassword = from_env('DB_PASSWORD')\nhost = from_env('DB_HOST')\nport = from_env('DB_PORT')\ndatabase = from_env('DB_DATABASE')\nDATABASE_CONNECTION_URI = f'postgresql://{user}:{password}@{host}:{port}/{database}'\ndatabase = databases.Database(DATABASE_CONNECTION_URI)\nmetadata = MetaData()\nberths = Table(\n    \"berths\",\n    metadata,\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -261,10 +404,10 @@
         "kind": 5,
         "importPath": "database",
         "description": "database",
-        "peekOfCode": "host = os.environ['DB_HOST']\nport = os.environ['DB_PORT']\ndatabase = os.environ['DB_DATABASE']\nDATABASE_CONNECTION_URI = f'postgresql://{user}:{password}@{host}:{port}/{database}'\ndatabase = databases.Database(DATABASE_CONNECTION_URI)\nmetadata = sqlalchemy.MetaData()\nberths = sqlalchemy.Table(\n    \"berths\",\n    metadata,\n    sqlalchemy.Column(\"id\", sqlalchemy.Integer, primary_key=True),",
+        "peekOfCode": "host = from_env('DB_HOST')\nport = from_env('DB_PORT')\ndatabase = from_env('DB_DATABASE')\nDATABASE_CONNECTION_URI = f'postgresql://{user}:{password}@{host}:{port}/{database}'\ndatabase = databases.Database(DATABASE_CONNECTION_URI)\nmetadata = MetaData()\nberths = Table(\n    \"berths\",\n    metadata,\n    Column(\"id\", Integer, primary_key=True),",
         "detail": "database",
         "documentation": {
-            "value": "\n```python\nfrom database import host\n```\n\n```python\n\n\n```\n\n```python\nhost = os.environ['DB_HOST']\nport = os.environ['DB_PORT']\ndatabase = os.environ['DB_DATABASE']\nDATABASE_CONNECTION_URI = f'postgresql://{user}:{password}@{host}:{port}/{database}'\ndatabase = databases.Database(DATABASE_CONNECTION_URI)\nmetadata = sqlalchemy.MetaData()\nberths = sqlalchemy.Table(\n    \"berths\",\n    metadata,\n    sqlalchemy.Column(\"id\", sqlalchemy.Integer, primary_key=True),\n```\n",
+            "value": "\n```python\nfrom database import host\n```\n\n```python\n\n\n```\n\n```python\nhost = from_env('DB_HOST')\nport = from_env('DB_PORT')\ndatabase = from_env('DB_DATABASE')\nDATABASE_CONNECTION_URI = f'postgresql://{user}:{password}@{host}:{port}/{database}'\ndatabase = databases.Database(DATABASE_CONNECTION_URI)\nmetadata = MetaData()\nberths = Table(\n    \"berths\",\n    metadata,\n    Column(\"id\", Integer, primary_key=True),\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -273,10 +416,10 @@
         "kind": 5,
         "importPath": "database",
         "description": "database",
-        "peekOfCode": "port = os.environ['DB_PORT']\ndatabase = os.environ['DB_DATABASE']\nDATABASE_CONNECTION_URI = f'postgresql://{user}:{password}@{host}:{port}/{database}'\ndatabase = databases.Database(DATABASE_CONNECTION_URI)\nmetadata = sqlalchemy.MetaData()\nberths = sqlalchemy.Table(\n    \"berths\",\n    metadata,\n    sqlalchemy.Column(\"id\", sqlalchemy.Integer, primary_key=True),\n    sqlalchemy.Column(\"name\", sqlalchemy.VARCHAR),",
+        "peekOfCode": "port = from_env('DB_PORT')\ndatabase = from_env('DB_DATABASE')\nDATABASE_CONNECTION_URI = f'postgresql://{user}:{password}@{host}:{port}/{database}'\ndatabase = databases.Database(DATABASE_CONNECTION_URI)\nmetadata = MetaData()\nberths = Table(\n    \"berths\",\n    metadata,\n    Column(\"id\", Integer, primary_key=True),\n    Column(\"name\", VARCHAR),",
         "detail": "database",
         "documentation": {
-            "value": "\n```python\nfrom database import port\n```\n\n```python\n\n\n```\n\n```python\nport = os.environ['DB_PORT']\ndatabase = os.environ['DB_DATABASE']\nDATABASE_CONNECTION_URI = f'postgresql://{user}:{password}@{host}:{port}/{database}'\ndatabase = databases.Database(DATABASE_CONNECTION_URI)\nmetadata = sqlalchemy.MetaData()\nberths = sqlalchemy.Table(\n    \"berths\",\n    metadata,\n    sqlalchemy.Column(\"id\", sqlalchemy.Integer, primary_key=True),\n    sqlalchemy.Column(\"name\", sqlalchemy.VARCHAR),\n```\n",
+            "value": "\n```python\nfrom database import port\n```\n\n```python\n\n\n```\n\n```python\nport = from_env('DB_PORT')\ndatabase = from_env('DB_DATABASE')\nDATABASE_CONNECTION_URI = f'postgresql://{user}:{password}@{host}:{port}/{database}'\ndatabase = databases.Database(DATABASE_CONNECTION_URI)\nmetadata = MetaData()\nberths = Table(\n    \"berths\",\n    metadata,\n    Column(\"id\", Integer, primary_key=True),\n    Column(\"name\", VARCHAR),\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -285,10 +428,10 @@
         "kind": 5,
         "importPath": "database",
         "description": "database",
-        "peekOfCode": "database = os.environ['DB_DATABASE']\nDATABASE_CONNECTION_URI = f'postgresql://{user}:{password}@{host}:{port}/{database}'\ndatabase = databases.Database(DATABASE_CONNECTION_URI)\nmetadata = sqlalchemy.MetaData()\nberths = sqlalchemy.Table(\n    \"berths\",\n    metadata,\n    sqlalchemy.Column(\"id\", sqlalchemy.Integer, primary_key=True),\n    sqlalchemy.Column(\"name\", sqlalchemy.VARCHAR),\n    sqlalchemy.Column(\"has_fiscalization\", sqlalchemy.BOOLEAN),",
+        "peekOfCode": "database = from_env('DB_DATABASE')\nDATABASE_CONNECTION_URI = f'postgresql://{user}:{password}@{host}:{port}/{database}'\ndatabase = databases.Database(DATABASE_CONNECTION_URI)\nmetadata = MetaData()\nberths = Table(\n    \"berths\",\n    metadata,\n    Column(\"id\", Integer, primary_key=True),\n    Column(\"name\", VARCHAR),\n    Column(\"has_fiscalization\", BOOLEAN),",
         "detail": "database",
         "documentation": {
-            "value": "\n```python\nfrom database import database\n```\n\n```python\n\n\n```\n\n```python\ndatabase = os.environ['DB_DATABASE']\nDATABASE_CONNECTION_URI = f'postgresql://{user}:{password}@{host}:{port}/{database}'\ndatabase = databases.Database(DATABASE_CONNECTION_URI)\nmetadata = sqlalchemy.MetaData()\nberths = sqlalchemy.Table(\n    \"berths\",\n    metadata,\n    sqlalchemy.Column(\"id\", sqlalchemy.Integer, primary_key=True),\n    sqlalchemy.Column(\"name\", sqlalchemy.VARCHAR),\n    sqlalchemy.Column(\"has_fiscalization\", sqlalchemy.BOOLEAN),\n```\n",
+            "value": "\n```python\nfrom database import database\n```\n\n```python\n\n\n```\n\n```python\ndatabase = from_env('DB_DATABASE')\nDATABASE_CONNECTION_URI = f'postgresql://{user}:{password}@{host}:{port}/{database}'\ndatabase = databases.Database(DATABASE_CONNECTION_URI)\nmetadata = MetaData()\nberths = Table(\n    \"berths\",\n    metadata,\n    Column(\"id\", Integer, primary_key=True),\n    Column(\"name\", VARCHAR),\n    Column(\"has_fiscalization\", BOOLEAN),\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -297,10 +440,10 @@
         "kind": 5,
         "importPath": "database",
         "description": "database",
-        "peekOfCode": "DATABASE_CONNECTION_URI = f'postgresql://{user}:{password}@{host}:{port}/{database}'\ndatabase = databases.Database(DATABASE_CONNECTION_URI)\nmetadata = sqlalchemy.MetaData()\nberths = sqlalchemy.Table(\n    \"berths\",\n    metadata,\n    sqlalchemy.Column(\"id\", sqlalchemy.Integer, primary_key=True),\n    sqlalchemy.Column(\"name\", sqlalchemy.VARCHAR),\n    sqlalchemy.Column(\"has_fiscalization\", sqlalchemy.BOOLEAN),\n    sqlalchemy.Column(\"depth\", sqlalchemy.FLOAT),",
+        "peekOfCode": "DATABASE_CONNECTION_URI = f'postgresql://{user}:{password}@{host}:{port}/{database}'\ndatabase = databases.Database(DATABASE_CONNECTION_URI)\nmetadata = MetaData()\nberths = Table(\n    \"berths\",\n    metadata,\n    Column(\"id\", Integer, primary_key=True),\n    Column(\"name\", VARCHAR),\n    Column(\"has_fiscalization\", BOOLEAN),\n    Column(\"depth\", FLOAT),",
         "detail": "database",
         "documentation": {
-            "value": "\n```python\nfrom database import DATABASE_CONNECTION_URI\n```\n\n```python\n\n\n```\n\n```python\nDATABASE_CONNECTION_URI = f'postgresql://{user}:{password}@{host}:{port}/{database}'\ndatabase = databases.Database(DATABASE_CONNECTION_URI)\nmetadata = sqlalchemy.MetaData()\nberths = sqlalchemy.Table(\n    \"berths\",\n    metadata,\n    sqlalchemy.Column(\"id\", sqlalchemy.Integer, primary_key=True),\n    sqlalchemy.Column(\"name\", sqlalchemy.VARCHAR),\n    sqlalchemy.Column(\"has_fiscalization\", sqlalchemy.BOOLEAN),\n    sqlalchemy.Column(\"depth\", sqlalchemy.FLOAT),\n```\n",
+            "value": "\n```python\nfrom database import DATABASE_CONNECTION_URI\n```\n\n```python\n\n\n```\n\n```python\nDATABASE_CONNECTION_URI = f'postgresql://{user}:{password}@{host}:{port}/{database}'\ndatabase = databases.Database(DATABASE_CONNECTION_URI)\nmetadata = MetaData()\nberths = Table(\n    \"berths\",\n    metadata,\n    Column(\"id\", Integer, primary_key=True),\n    Column(\"name\", VARCHAR),\n    Column(\"has_fiscalization\", BOOLEAN),\n    Column(\"depth\", FLOAT),\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -309,10 +452,10 @@
         "kind": 5,
         "importPath": "database",
         "description": "database",
-        "peekOfCode": "database = databases.Database(DATABASE_CONNECTION_URI)\nmetadata = sqlalchemy.MetaData()\nberths = sqlalchemy.Table(\n    \"berths\",\n    metadata,\n    sqlalchemy.Column(\"id\", sqlalchemy.Integer, primary_key=True),\n    sqlalchemy.Column(\"name\", sqlalchemy.VARCHAR),\n    sqlalchemy.Column(\"has_fiscalization\", sqlalchemy.BOOLEAN),\n    sqlalchemy.Column(\"depth\", sqlalchemy.FLOAT),\n)",
+        "peekOfCode": "database = databases.Database(DATABASE_CONNECTION_URI)\nmetadata = MetaData()\nberths = Table(\n    \"berths\",\n    metadata,\n    Column(\"id\", Integer, primary_key=True),\n    Column(\"name\", VARCHAR),\n    Column(\"has_fiscalization\", BOOLEAN),\n    Column(\"depth\", FLOAT),\n)",
         "detail": "database",
         "documentation": {
-            "value": "\n```python\nfrom database import database\n```\n\n```python\n\n\n```\n\n```python\ndatabase = databases.Database(DATABASE_CONNECTION_URI)\nmetadata = sqlalchemy.MetaData()\nberths = sqlalchemy.Table(\n    \"berths\",\n    metadata,\n    sqlalchemy.Column(\"id\", sqlalchemy.Integer, primary_key=True),\n    sqlalchemy.Column(\"name\", sqlalchemy.VARCHAR),\n    sqlalchemy.Column(\"has_fiscalization\", sqlalchemy.BOOLEAN),\n    sqlalchemy.Column(\"depth\", sqlalchemy.FLOAT),\n)\n```\n",
+            "value": "\n```python\nfrom database import database\n```\n\n```python\n\n\n```\n\n```python\ndatabase = databases.Database(DATABASE_CONNECTION_URI)\nmetadata = MetaData()\nberths = Table(\n    \"berths\",\n    metadata,\n    Column(\"id\", Integer, primary_key=True),\n    Column(\"name\", VARCHAR),\n    Column(\"has_fiscalization\", BOOLEAN),\n    Column(\"depth\", FLOAT),\n)\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -321,10 +464,10 @@
         "kind": 5,
         "importPath": "database",
         "description": "database",
-        "peekOfCode": "metadata = sqlalchemy.MetaData()\nberths = sqlalchemy.Table(\n    \"berths\",\n    metadata,\n    sqlalchemy.Column(\"id\", sqlalchemy.Integer, primary_key=True),\n    sqlalchemy.Column(\"name\", sqlalchemy.VARCHAR),\n    sqlalchemy.Column(\"has_fiscalization\", sqlalchemy.BOOLEAN),\n    sqlalchemy.Column(\"depth\", sqlalchemy.FLOAT),\n)\ncost_queue = sqlalchemy.Table(",
+        "peekOfCode": "metadata = MetaData()\nberths = Table(\n    \"berths\",\n    metadata,\n    Column(\"id\", Integer, primary_key=True),\n    Column(\"name\", VARCHAR),\n    Column(\"has_fiscalization\", BOOLEAN),\n    Column(\"depth\", FLOAT),\n)\ncost_queue = Table(",
         "detail": "database",
         "documentation": {
-            "value": "\n```python\nfrom database import metadata\n```\n\n```python\n\n\n```\n\n```python\nmetadata = sqlalchemy.MetaData()\nberths = sqlalchemy.Table(\n    \"berths\",\n    metadata,\n    sqlalchemy.Column(\"id\", sqlalchemy.Integer, primary_key=True),\n    sqlalchemy.Column(\"name\", sqlalchemy.VARCHAR),\n    sqlalchemy.Column(\"has_fiscalization\", sqlalchemy.BOOLEAN),\n    sqlalchemy.Column(\"depth\", sqlalchemy.FLOAT),\n)\ncost_queue = sqlalchemy.Table(\n```\n",
+            "value": "\n```python\nfrom database import metadata\n```\n\n```python\n\n\n```\n\n```python\nmetadata = MetaData()\nberths = Table(\n    \"berths\",\n    metadata,\n    Column(\"id\", Integer, primary_key=True),\n    Column(\"name\", VARCHAR),\n    Column(\"has_fiscalization\", BOOLEAN),\n    Column(\"depth\", FLOAT),\n)\ncost_queue = Table(\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -333,10 +476,10 @@
         "kind": 5,
         "importPath": "database",
         "description": "database",
-        "peekOfCode": "berths = sqlalchemy.Table(\n    \"berths\",\n    metadata,\n    sqlalchemy.Column(\"id\", sqlalchemy.Integer, primary_key=True),\n    sqlalchemy.Column(\"name\", sqlalchemy.VARCHAR),\n    sqlalchemy.Column(\"has_fiscalization\", sqlalchemy.BOOLEAN),\n    sqlalchemy.Column(\"depth\", sqlalchemy.FLOAT),\n)\ncost_queue = sqlalchemy.Table(\n    \"cost_queue\",",
+        "peekOfCode": "berths = Table(\n    \"berths\",\n    metadata,\n    Column(\"id\", Integer, primary_key=True),\n    Column(\"name\", VARCHAR),\n    Column(\"has_fiscalization\", BOOLEAN),\n    Column(\"depth\", FLOAT),\n)\ncost_queue = Table(\n    \"cost_queue\",",
         "detail": "database",
         "documentation": {
-            "value": "\n```python\nfrom database import berths\n```\n\n```python\n\n\n```\n\n```python\nberths = sqlalchemy.Table(\n    \"berths\",\n    metadata,\n    sqlalchemy.Column(\"id\", sqlalchemy.Integer, primary_key=True),\n    sqlalchemy.Column(\"name\", sqlalchemy.VARCHAR),\n    sqlalchemy.Column(\"has_fiscalization\", sqlalchemy.BOOLEAN),\n    sqlalchemy.Column(\"depth\", sqlalchemy.FLOAT),\n)\ncost_queue = sqlalchemy.Table(\n    \"cost_queue\",\n```\n",
+            "value": "\n```python\nfrom database import berths\n```\n\n```python\n\n\n```\n\n```python\nberths = Table(\n    \"berths\",\n    metadata,\n    Column(\"id\", Integer, primary_key=True),\n    Column(\"name\", VARCHAR),\n    Column(\"has_fiscalization\", BOOLEAN),\n    Column(\"depth\", FLOAT),\n)\ncost_queue = Table(\n    \"cost_queue\",\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -345,10 +488,10 @@
         "kind": 5,
         "importPath": "database",
         "description": "database",
-        "peekOfCode": "cost_queue = sqlalchemy.Table(\n    \"cost_queue\",\n    metadata,\n    sqlalchemy.Column(\"id\", sqlalchemy.Integer, primary_key=True),\n    sqlalchemy.Column(\"ship_details\", sqlalchemy.JSON),\n    sqlalchemy.Column(\"created_at\", sqlalchemy.DATETIME),\n)\nengine = sqlalchemy.create_engine(\n    DATABASE_CONNECTION_URI\n)",
+        "peekOfCode": "cost_queue = Table(\n    \"cost_queue\",\n    metadata,\n    Column(\"id\", Integer, primary_key=True),\n    Column(\"ship_details\", JSON),\n    Column(\"created_at\", DATETIME),\n)\nengine = create_engine(\n    DATABASE_CONNECTION_URI\n)",
         "detail": "database",
         "documentation": {
-            "value": "\n```python\nfrom database import cost_queue\n```\n\n```python\n\n\n```\n\n```python\ncost_queue = sqlalchemy.Table(\n    \"cost_queue\",\n    metadata,\n    sqlalchemy.Column(\"id\", sqlalchemy.Integer, primary_key=True),\n    sqlalchemy.Column(\"ship_details\", sqlalchemy.JSON),\n    sqlalchemy.Column(\"created_at\", sqlalchemy.DATETIME),\n)\nengine = sqlalchemy.create_engine(\n    DATABASE_CONNECTION_URI\n)\n```\n",
+            "value": "\n```python\nfrom database import cost_queue\n```\n\n```python\n\n\n```\n\n```python\ncost_queue = Table(\n    \"cost_queue\",\n    metadata,\n    Column(\"id\", Integer, primary_key=True),\n    Column(\"ship_details\", JSON),\n    Column(\"created_at\", DATETIME),\n)\nengine = create_engine(\n    DATABASE_CONNECTION_URI\n)\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -357,10 +500,22 @@
         "kind": 5,
         "importPath": "database",
         "description": "database",
-        "peekOfCode": "engine = sqlalchemy.create_engine(\n    DATABASE_CONNECTION_URI\n)\n#metadata.create_all(engine)",
+        "peekOfCode": "engine = create_engine(\n    DATABASE_CONNECTION_URI\n)\n#metadata.create_all(engine)",
         "detail": "database",
         "documentation": {
-            "value": "\n```python\nfrom database import engine\n```\n\n```python\n\n\n```\n\n```python\nengine = sqlalchemy.create_engine(\n    DATABASE_CONNECTION_URI\n)\n#metadata.create_all(engine)\n```\n",
+            "value": "\n```python\nfrom database import engine\n```\n\n```python\n\n\n```\n\n```python\nengine = create_engine(\n    DATABASE_CONNECTION_URI\n)\n#metadata.create_all(engine)\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "from_env",
+        "kind": 2,
+        "importPath": "env",
+        "description": "env",
+        "peekOfCode": "def from_env(key: str):\n    value = os.environ.get(key)\n    if value == None:\n        raise f\"Environment variable {key} does not exist\"\n    return value",
+        "detail": "env",
+        "documentation": {
+            "value": "\n```python\nfrom env import from_env\n```\n\n```python\n\n\n```\n\n```python\ndef from_env(key: str):\n    value = os.environ.get(key)\n    if value == None:\n        raise f\"Environment variable {key} does not exist\"\n    return value\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -369,10 +524,10 @@
         "kind": 6,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "class ShipType(str, Enum):\n    BulkCarrier = \"BulkCarrier\"\n    Other = \"Other\"\nclass ShipPurpose(str, Enum):\n    TransportBulkLiquid = \"TransportBulkLiquid\"\n    TransportBulkSolid = \"TransportBulkSolid\"\n    TransportGeneralCargo = \"TransportGeneralCargo\"\n    Other = \"Other\"\nclass CargoType(str, Enum):\n    Bulk = \"Bulk\"",
+        "peekOfCode": "class ShipType(str, Enum):\n    BulkCarrier = \"BulkCarrier\"\n    Other = \"Other\"\nclass ShipPurpose(str, Enum):\n    # TODO: add missing purposes\n    TransportBulkLiquid = \"TransportBulkLiquid\"\n    TransportBulkSolid = \"TransportBulkSolid\"\n    TransportGeneralCargo = \"TransportGeneralCargo\"\n    Dredging = \"Dredging\"\n    PortSupport = \"PortSupport\"",
         "detail": "main",
         "documentation": {
-            "value": "\n```python\nfrom main import ShipType\n```\n\n```python\n\n\n```\n\n```python\nclass ShipType(str, Enum):\n    BulkCarrier = \"BulkCarrier\"\n    Other = \"Other\"\nclass ShipPurpose(str, Enum):\n    TransportBulkLiquid = \"TransportBulkLiquid\"\n    TransportBulkSolid = \"TransportBulkSolid\"\n    TransportGeneralCargo = \"TransportGeneralCargo\"\n    Other = \"Other\"\nclass CargoType(str, Enum):\n    Bulk = \"Bulk\"\n```\n",
+            "value": "\n```python\nfrom main import ShipType\n```\n\n```python\n\n\n```\n\n```python\nclass ShipType(str, Enum):\n    BulkCarrier = \"BulkCarrier\"\n    Other = \"Other\"\nclass ShipPurpose(str, Enum):\n    # TODO: add missing purposes\n    TransportBulkLiquid = \"TransportBulkLiquid\"\n    TransportBulkSolid = \"TransportBulkSolid\"\n    TransportGeneralCargo = \"TransportGeneralCargo\"\n    Dredging = \"Dredging\"\n    PortSupport = \"PortSupport\"\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -381,10 +536,10 @@
         "kind": 6,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "class ShipPurpose(str, Enum):\n    TransportBulkLiquid = \"TransportBulkLiquid\"\n    TransportBulkSolid = \"TransportBulkSolid\"\n    TransportGeneralCargo = \"TransportGeneralCargo\"\n    Other = \"Other\"\nclass CargoType(str, Enum):\n    Bulk = \"Bulk\"\n    General = \"General\"\nclass ShipDTO(BaseModel):\n    code: str",
+        "peekOfCode": "class ShipPurpose(str, Enum):\n    # TODO: add missing purposes\n    TransportBulkLiquid = \"TransportBulkLiquid\"\n    TransportBulkSolid = \"TransportBulkSolid\"\n    TransportGeneralCargo = \"TransportGeneralCargo\"\n    Dredging = \"Dredging\"\n    PortSupport = \"PortSupport\"\n    Other = \"Other\"\n    def map_to_str_purpose(self):\n        # FIXME: return correct string",
         "detail": "main",
         "documentation": {
-            "value": "\n```python\nfrom main import ShipPurpose\n```\n\n```python\n\n\n```\n\n```python\nclass ShipPurpose(str, Enum):\n    TransportBulkLiquid = \"TransportBulkLiquid\"\n    TransportBulkSolid = \"TransportBulkSolid\"\n    TransportGeneralCargo = \"TransportGeneralCargo\"\n    Other = \"Other\"\nclass CargoType(str, Enum):\n    Bulk = \"Bulk\"\n    General = \"General\"\nclass ShipDTO(BaseModel):\n    code: str\n```\n",
+            "value": "\n```python\nfrom main import ShipPurpose\n```\n\n```python\n\n\n```\n\n```python\nclass ShipPurpose(str, Enum):\n    # TODO: add missing purposes\n    TransportBulkLiquid = \"TransportBulkLiquid\"\n    TransportBulkSolid = \"TransportBulkSolid\"\n    TransportGeneralCargo = \"TransportGeneralCargo\"\n    Dredging = \"Dredging\"\n    PortSupport = \"PortSupport\"\n    Other = \"Other\"\n    def map_to_str_purpose(self):\n        # FIXME: return correct string\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -393,10 +548,10 @@
         "kind": 6,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "class CargoType(str, Enum):\n    Bulk = \"Bulk\"\n    General = \"General\"\nclass ShipDTO(BaseModel):\n    code: str\n    is_off_shore: bool\n    ship_name: str\n    ship_type: ShipType\n    ship_purpose: ShipPurpose\n    draft_size_in_meters: float",
+        "peekOfCode": "class CargoType(str, Enum):\n    Bulk = \"Bulk\"\n    General = \"General\"\nclass ShipDTO(BaseModel):\n    code: str\n    is_off_shore: bool\n    ship_name: str\n    ship_type: ShipType\n    ship_purpose: ShipPurpose\n    ship_length_in_meters: float",
         "detail": "main",
         "documentation": {
-            "value": "\n```python\nfrom main import CargoType\n```\n\n```python\n\n\n```\n\n```python\nclass CargoType(str, Enum):\n    Bulk = \"Bulk\"\n    General = \"General\"\nclass ShipDTO(BaseModel):\n    code: str\n    is_off_shore: bool\n    ship_name: str\n    ship_type: ShipType\n    ship_purpose: ShipPurpose\n    draft_size_in_meters: float\n```\n",
+            "value": "\n```python\nfrom main import CargoType\n```\n\n```python\n\n\n```\n\n```python\nclass CargoType(str, Enum):\n    Bulk = \"Bulk\"\n    General = \"General\"\nclass ShipDTO(BaseModel):\n    code: str\n    is_off_shore: bool\n    ship_name: str\n    ship_type: ShipType\n    ship_purpose: ShipPurpose\n    ship_length_in_meters: float\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -405,10 +560,34 @@
         "kind": 6,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "class ShipDTO(BaseModel):\n    code: str\n    is_off_shore: bool\n    ship_name: str\n    ship_type: ShipType\n    ship_purpose: ShipPurpose\n    draft_size_in_meters: float\n    cargo_weight: float\n    cargo_type: CargoType\n    estimated_mooring: datetime",
+        "peekOfCode": "class ShipDTO(BaseModel):\n    code: str\n    is_off_shore: bool\n    ship_name: str\n    ship_type: ShipType\n    ship_purpose: ShipPurpose\n    ship_length_in_meters: float\n    ship_capacity_in_teu: float\n    draft_size_in_meters: float\n    cargo_weight: float",
         "detail": "main",
         "documentation": {
-            "value": "\n```python\nfrom main import ShipDTO\n```\n\n```python\n\n\n```\n\n```python\nclass ShipDTO(BaseModel):\n    code: str\n    is_off_shore: bool\n    ship_name: str\n    ship_type: ShipType\n    ship_purpose: ShipPurpose\n    draft_size_in_meters: float\n    cargo_weight: float\n    cargo_type: CargoType\n    estimated_mooring: datetime\n```\n",
+            "value": "\n```python\nfrom main import ShipDTO\n```\n\n```python\n\n\n```\n\n```python\nclass ShipDTO(BaseModel):\n    code: str\n    is_off_shore: bool\n    ship_name: str\n    ship_type: ShipType\n    ship_purpose: ShipPurpose\n    ship_length_in_meters: float\n    ship_capacity_in_teu: float\n    draft_size_in_meters: float\n    cargo_weight: float\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "Ship",
+        "kind": 6,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "class Ship(BaseModel):\n    code: str\n    is_off_shore: bool\n    ship_name: str\n    ship_type: ShipType\n    ship_purpose: ShipPurpose\n    ship_length_in_meters: float\n    ship_capacity_in_teu: float\n    draft_size_in_meters: float\n    cargo_weight: float",
+        "detail": "main",
+        "documentation": {
+            "value": "\n```python\nfrom main import Ship\n```\n\n```python\n\n\n```\n\n```python\nclass Ship(BaseModel):\n    code: str\n    is_off_shore: bool\n    ship_name: str\n    ship_type: ShipType\n    ship_purpose: ShipPurpose\n    ship_length_in_meters: float\n    ship_capacity_in_teu: float\n    draft_size_in_meters: float\n    cargo_weight: float\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "calculate_priority_score_for_ship",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def calculate_priority_score_for_ship(ship: Ship):\n    # FIXME: calculate priority score\n    # FIXME: add the following attributes to ship:\n    # - is_cargo_dangerous\n    # - is_cargo_important\n    # - cargo_validity_date\n    # - has_living_animals\n    return 10\nasync def calculate_cost_score_for_ship(ship: ShipDTO, database):\n    base_score = 10",
+        "detail": "main",
+        "documentation": {
+            "value": "\n```python\nfrom main import calculate_priority_score_for_ship\n```\n\n```python\n\n\n```\n\n```python\ndef calculate_priority_score_for_ship(ship: Ship):\n    # FIXME: calculate priority score\n    # FIXME: add the following attributes to ship:\n    # - is_cargo_dangerous\n    # - is_cargo_important\n    # - cargo_validity_date\n    # - has_living_animals\n    return 10\nasync def calculate_cost_score_for_ship(ship: ShipDTO, database):\n    base_score = 10\n```\n",
             "supportThemeIcons": false
         }
     },
