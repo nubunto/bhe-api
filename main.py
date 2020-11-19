@@ -2,6 +2,8 @@ from fastapi import FastAPI
 from datetime import datetime
 from enum import Enum
 from pydantic import BaseModel
+from database import berths, cost_queue, database
+
 
 class ShipType(str, Enum):
     BulkCarrier = "BulkCarrier"
@@ -32,12 +34,25 @@ class ShipDTO(BaseModel):
 
 app = FastAPI()
 
+@app.on_event("startup")
+async def startup():
+    await database.connect()
+
+@app.on_event("shutdown")
+async def shutdown():
+    await database.disconnect()
+
 @app.get("/")
 async def root():
     return { "message": "Hello, world!" }
 
 @app.post("/cost-queue/")
 async def create_queue_entry(ship: ShipDTO):
+
+    query = cost_queue.insert().values(ship_details = ship.dict(exclude={"estimated_mooring", "estimated_unmooring"}), created_at = datetime.now())
+
+    await database.execute(query)
+
     return {
         'entry': {
             'id': 1,

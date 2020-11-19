@@ -1,0 +1,427 @@
+[
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {
+            "value": "\n```python\nimport os\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "site",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "site",
+        "description": "site",
+        "detail": "site",
+        "documentation": {
+            "value": "\n```python\nimport site\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {
+            "value": "\n```python\nimport sys\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "sqlalchemy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "detail": "sqlalchemy",
+        "documentation": {
+            "value": "\n```python\nimport sqlalchemy\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "databases",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "databases",
+        "description": "databases",
+        "detail": "databases",
+        "documentation": {
+            "value": "\n```python\nimport databases\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "FastAPI",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {
+            "value": "\n```python\nimport fastapi\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {
+            "value": "\n```python\nimport datetime\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "Enum",
+        "importPath": "enum",
+        "description": "enum",
+        "isExtraImport": true,
+        "detail": "enum",
+        "documentation": {
+            "value": "\n```python\nimport enum\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "BaseModel",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {
+            "value": "\n```python\nimport pydantic\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "berths",
+        "importPath": "database",
+        "description": "database",
+        "isExtraImport": true,
+        "detail": "database",
+        "documentation": {
+            "value": "\n```python\nimport database\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "cost_queue",
+        "importPath": "database",
+        "description": "database",
+        "isExtraImport": true,
+        "detail": "database",
+        "documentation": {
+            "value": "\n```python\nimport database\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "database",
+        "importPath": "database",
+        "description": "database",
+        "isExtraImport": true,
+        "detail": "database",
+        "documentation": {
+            "value": "\n```python\nimport database\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "bin_dir",
+        "kind": 5,
+        "importPath": "venv.bin.activate_this",
+        "description": "venv.bin.activate_this",
+        "peekOfCode": "bin_dir = os.path.dirname(abs_file)\nbase = bin_dir[: -len(\"bin\") - 1]  # strip away the bin part from the __file__, plus the path separator\n# prepend bin to PATH (this file is inside the bin directory)\nos.environ[\"PATH\"] = os.pathsep.join([bin_dir] + os.environ.get(\"PATH\", \"\").split(os.pathsep))\nos.environ[\"VIRTUAL_ENV\"] = base  # virtual env is right above bin directory\n# add the virtual environments libraries to the host python import mechanism\nprev_length = len(sys.path)\nfor lib in \"../lib/python3.8/site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path.decode(\"utf-8\") if \"\" else path)",
+        "detail": "venv.bin.activate_this",
+        "documentation": {
+            "value": "\n```python\nfrom venv.bin.activate_this import bin_dir\n```\n\n```python\n\n\n```\n\n```python\nbin_dir = os.path.dirname(abs_file)\nbase = bin_dir[: -len(\"bin\") - 1]  # strip away the bin part from the __file__, plus the path separator\n# prepend bin to PATH (this file is inside the bin directory)\nos.environ[\"PATH\"] = os.pathsep.join([bin_dir] + os.environ.get(\"PATH\", \"\").split(os.pathsep))\nos.environ[\"VIRTUAL_ENV\"] = base  # virtual env is right above bin directory\n# add the virtual environments libraries to the host python import mechanism\nprev_length = len(sys.path)\nfor lib in \"../lib/python3.8/site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path.decode(\"utf-8\") if \"\" else path)\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "base",
+        "kind": 5,
+        "importPath": "venv.bin.activate_this",
+        "description": "venv.bin.activate_this",
+        "peekOfCode": "base = bin_dir[: -len(\"bin\") - 1]  # strip away the bin part from the __file__, plus the path separator\n# prepend bin to PATH (this file is inside the bin directory)\nos.environ[\"PATH\"] = os.pathsep.join([bin_dir] + os.environ.get(\"PATH\", \"\").split(os.pathsep))\nos.environ[\"VIRTUAL_ENV\"] = base  # virtual env is right above bin directory\n# add the virtual environments libraries to the host python import mechanism\nprev_length = len(sys.path)\nfor lib in \"../lib/python3.8/site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path.decode(\"utf-8\") if \"\" else path)\nsys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]",
+        "detail": "venv.bin.activate_this",
+        "documentation": {
+            "value": "\n```python\nfrom venv.bin.activate_this import base\n```\n\n```python\n\n\n```\n\n```python\nbase = bin_dir[: -len(\"bin\") - 1]  # strip away the bin part from the __file__, plus the path separator\n# prepend bin to PATH (this file is inside the bin directory)\nos.environ[\"PATH\"] = os.pathsep.join([bin_dir] + os.environ.get(\"PATH\", \"\").split(os.pathsep))\nos.environ[\"VIRTUAL_ENV\"] = base  # virtual env is right above bin directory\n# add the virtual environments libraries to the host python import mechanism\nprev_length = len(sys.path)\nfor lib in \"../lib/python3.8/site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path.decode(\"utf-8\") if \"\" else path)\nsys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "os.environ[\"PATH\"]",
+        "kind": 5,
+        "importPath": "venv.bin.activate_this",
+        "description": "venv.bin.activate_this",
+        "peekOfCode": "os.environ[\"PATH\"] = os.pathsep.join([bin_dir] + os.environ.get(\"PATH\", \"\").split(os.pathsep))\nos.environ[\"VIRTUAL_ENV\"] = base  # virtual env is right above bin directory\n# add the virtual environments libraries to the host python import mechanism\nprev_length = len(sys.path)\nfor lib in \"../lib/python3.8/site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path.decode(\"utf-8\") if \"\" else path)\nsys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]\nsys.real_prefix = sys.prefix\nsys.prefix = base",
+        "detail": "venv.bin.activate_this",
+        "documentation": {
+            "value": "\n```python\nfrom venv.bin.activate_this import os.environ[\"PATH\"]\n```\n\n```python\n\n\n```\n\n```python\nos.environ[\"PATH\"] = os.pathsep.join([bin_dir] + os.environ.get(\"PATH\", \"\").split(os.pathsep))\nos.environ[\"VIRTUAL_ENV\"] = base  # virtual env is right above bin directory\n# add the virtual environments libraries to the host python import mechanism\nprev_length = len(sys.path)\nfor lib in \"../lib/python3.8/site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path.decode(\"utf-8\") if \"\" else path)\nsys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]\nsys.real_prefix = sys.prefix\nsys.prefix = base\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "os.environ[\"VIRTUAL_ENV\"]",
+        "kind": 5,
+        "importPath": "venv.bin.activate_this",
+        "description": "venv.bin.activate_this",
+        "peekOfCode": "os.environ[\"VIRTUAL_ENV\"] = base  # virtual env is right above bin directory\n# add the virtual environments libraries to the host python import mechanism\nprev_length = len(sys.path)\nfor lib in \"../lib/python3.8/site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path.decode(\"utf-8\") if \"\" else path)\nsys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]\nsys.real_prefix = sys.prefix\nsys.prefix = base",
+        "detail": "venv.bin.activate_this",
+        "documentation": {
+            "value": "\n```python\nfrom venv.bin.activate_this import os.environ[\"VIRTUAL_ENV\"]\n```\n\n```python\n\n\n```\n\n```python\nos.environ[\"VIRTUAL_ENV\"] = base  # virtual env is right above bin directory\n# add the virtual environments libraries to the host python import mechanism\nprev_length = len(sys.path)\nfor lib in \"../lib/python3.8/site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path.decode(\"utf-8\") if \"\" else path)\nsys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]\nsys.real_prefix = sys.prefix\nsys.prefix = base\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "prev_length",
+        "kind": 5,
+        "importPath": "venv.bin.activate_this",
+        "description": "venv.bin.activate_this",
+        "peekOfCode": "prev_length = len(sys.path)\nfor lib in \"../lib/python3.8/site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path.decode(\"utf-8\") if \"\" else path)\nsys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]\nsys.real_prefix = sys.prefix\nsys.prefix = base",
+        "detail": "venv.bin.activate_this",
+        "documentation": {
+            "value": "\n```python\nfrom venv.bin.activate_this import prev_length\n```\n\n```python\n\n\n```\n\n```python\nprev_length = len(sys.path)\nfor lib in \"../lib/python3.8/site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path.decode(\"utf-8\") if \"\" else path)\nsys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]\nsys.real_prefix = sys.prefix\nsys.prefix = base\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "sys.path[:]",
+        "kind": 5,
+        "importPath": "venv.bin.activate_this",
+        "description": "venv.bin.activate_this",
+        "peekOfCode": "sys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]\nsys.real_prefix = sys.prefix\nsys.prefix = base",
+        "detail": "venv.bin.activate_this",
+        "documentation": {
+            "value": "\n```python\nfrom venv.bin.activate_this import sys.path[:]\n```\n\n```python\n\n\n```\n\n```python\nsys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]\nsys.real_prefix = sys.prefix\nsys.prefix = base\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "sys.real_prefix",
+        "kind": 5,
+        "importPath": "venv.bin.activate_this",
+        "description": "venv.bin.activate_this",
+        "peekOfCode": "sys.real_prefix = sys.prefix\nsys.prefix = base",
+        "detail": "venv.bin.activate_this",
+        "documentation": {
+            "value": "\n```python\nfrom venv.bin.activate_this import sys.real_prefix\n```\n\n```python\n\n\n```\n\n```python\nsys.real_prefix = sys.prefix\nsys.prefix = base\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "sys.prefix",
+        "kind": 5,
+        "importPath": "venv.bin.activate_this",
+        "description": "venv.bin.activate_this",
+        "peekOfCode": "sys.prefix = base",
+        "detail": "venv.bin.activate_this",
+        "documentation": {
+            "value": "\n```python\nfrom venv.bin.activate_this import sys.prefix\n```\n\n```python\n\n\n```\n\n```python\nsys.prefix = base\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "user",
+        "kind": 5,
+        "importPath": "database",
+        "description": "database",
+        "peekOfCode": "user = os.environ['DB_USER']\npassword = os.environ['DB_PASSWORD']\nhost = os.environ['DB_HOST']\nport = os.environ['DB_PORT']\ndatabase = os.environ['DB_DATABASE']\nDATABASE_CONNECTION_URI = f'postgresql://{user}:{password}@{host}:{port}/{database}'\ndatabase = databases.Database(DATABASE_CONNECTION_URI)\nmetadata = sqlalchemy.MetaData()\nberths = sqlalchemy.Table(\n    \"berths\",",
+        "detail": "database",
+        "documentation": {
+            "value": "\n```python\nfrom database import user\n```\n\n```python\n\n\n```\n\n```python\nuser = os.environ['DB_USER']\npassword = os.environ['DB_PASSWORD']\nhost = os.environ['DB_HOST']\nport = os.environ['DB_PORT']\ndatabase = os.environ['DB_DATABASE']\nDATABASE_CONNECTION_URI = f'postgresql://{user}:{password}@{host}:{port}/{database}'\ndatabase = databases.Database(DATABASE_CONNECTION_URI)\nmetadata = sqlalchemy.MetaData()\nberths = sqlalchemy.Table(\n    \"berths\",\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "password",
+        "kind": 5,
+        "importPath": "database",
+        "description": "database",
+        "peekOfCode": "password = os.environ['DB_PASSWORD']\nhost = os.environ['DB_HOST']\nport = os.environ['DB_PORT']\ndatabase = os.environ['DB_DATABASE']\nDATABASE_CONNECTION_URI = f'postgresql://{user}:{password}@{host}:{port}/{database}'\ndatabase = databases.Database(DATABASE_CONNECTION_URI)\nmetadata = sqlalchemy.MetaData()\nberths = sqlalchemy.Table(\n    \"berths\",\n    metadata,",
+        "detail": "database",
+        "documentation": {
+            "value": "\n```python\nfrom database import password\n```\n\n```python\n\n\n```\n\n```python\npassword = os.environ['DB_PASSWORD']\nhost = os.environ['DB_HOST']\nport = os.environ['DB_PORT']\ndatabase = os.environ['DB_DATABASE']\nDATABASE_CONNECTION_URI = f'postgresql://{user}:{password}@{host}:{port}/{database}'\ndatabase = databases.Database(DATABASE_CONNECTION_URI)\nmetadata = sqlalchemy.MetaData()\nberths = sqlalchemy.Table(\n    \"berths\",\n    metadata,\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "host",
+        "kind": 5,
+        "importPath": "database",
+        "description": "database",
+        "peekOfCode": "host = os.environ['DB_HOST']\nport = os.environ['DB_PORT']\ndatabase = os.environ['DB_DATABASE']\nDATABASE_CONNECTION_URI = f'postgresql://{user}:{password}@{host}:{port}/{database}'\ndatabase = databases.Database(DATABASE_CONNECTION_URI)\nmetadata = sqlalchemy.MetaData()\nberths = sqlalchemy.Table(\n    \"berths\",\n    metadata,\n    sqlalchemy.Column(\"id\", sqlalchemy.Integer, primary_key=True),",
+        "detail": "database",
+        "documentation": {
+            "value": "\n```python\nfrom database import host\n```\n\n```python\n\n\n```\n\n```python\nhost = os.environ['DB_HOST']\nport = os.environ['DB_PORT']\ndatabase = os.environ['DB_DATABASE']\nDATABASE_CONNECTION_URI = f'postgresql://{user}:{password}@{host}:{port}/{database}'\ndatabase = databases.Database(DATABASE_CONNECTION_URI)\nmetadata = sqlalchemy.MetaData()\nberths = sqlalchemy.Table(\n    \"berths\",\n    metadata,\n    sqlalchemy.Column(\"id\", sqlalchemy.Integer, primary_key=True),\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "port",
+        "kind": 5,
+        "importPath": "database",
+        "description": "database",
+        "peekOfCode": "port = os.environ['DB_PORT']\ndatabase = os.environ['DB_DATABASE']\nDATABASE_CONNECTION_URI = f'postgresql://{user}:{password}@{host}:{port}/{database}'\ndatabase = databases.Database(DATABASE_CONNECTION_URI)\nmetadata = sqlalchemy.MetaData()\nberths = sqlalchemy.Table(\n    \"berths\",\n    metadata,\n    sqlalchemy.Column(\"id\", sqlalchemy.Integer, primary_key=True),\n    sqlalchemy.Column(\"name\", sqlalchemy.VARCHAR),",
+        "detail": "database",
+        "documentation": {
+            "value": "\n```python\nfrom database import port\n```\n\n```python\n\n\n```\n\n```python\nport = os.environ['DB_PORT']\ndatabase = os.environ['DB_DATABASE']\nDATABASE_CONNECTION_URI = f'postgresql://{user}:{password}@{host}:{port}/{database}'\ndatabase = databases.Database(DATABASE_CONNECTION_URI)\nmetadata = sqlalchemy.MetaData()\nberths = sqlalchemy.Table(\n    \"berths\",\n    metadata,\n    sqlalchemy.Column(\"id\", sqlalchemy.Integer, primary_key=True),\n    sqlalchemy.Column(\"name\", sqlalchemy.VARCHAR),\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "database",
+        "kind": 5,
+        "importPath": "database",
+        "description": "database",
+        "peekOfCode": "database = os.environ['DB_DATABASE']\nDATABASE_CONNECTION_URI = f'postgresql://{user}:{password}@{host}:{port}/{database}'\ndatabase = databases.Database(DATABASE_CONNECTION_URI)\nmetadata = sqlalchemy.MetaData()\nberths = sqlalchemy.Table(\n    \"berths\",\n    metadata,\n    sqlalchemy.Column(\"id\", sqlalchemy.Integer, primary_key=True),\n    sqlalchemy.Column(\"name\", sqlalchemy.VARCHAR),\n    sqlalchemy.Column(\"has_fiscalization\", sqlalchemy.BOOLEAN),",
+        "detail": "database",
+        "documentation": {
+            "value": "\n```python\nfrom database import database\n```\n\n```python\n\n\n```\n\n```python\ndatabase = os.environ['DB_DATABASE']\nDATABASE_CONNECTION_URI = f'postgresql://{user}:{password}@{host}:{port}/{database}'\ndatabase = databases.Database(DATABASE_CONNECTION_URI)\nmetadata = sqlalchemy.MetaData()\nberths = sqlalchemy.Table(\n    \"berths\",\n    metadata,\n    sqlalchemy.Column(\"id\", sqlalchemy.Integer, primary_key=True),\n    sqlalchemy.Column(\"name\", sqlalchemy.VARCHAR),\n    sqlalchemy.Column(\"has_fiscalization\", sqlalchemy.BOOLEAN),\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "DATABASE_CONNECTION_URI",
+        "kind": 5,
+        "importPath": "database",
+        "description": "database",
+        "peekOfCode": "DATABASE_CONNECTION_URI = f'postgresql://{user}:{password}@{host}:{port}/{database}'\ndatabase = databases.Database(DATABASE_CONNECTION_URI)\nmetadata = sqlalchemy.MetaData()\nberths = sqlalchemy.Table(\n    \"berths\",\n    metadata,\n    sqlalchemy.Column(\"id\", sqlalchemy.Integer, primary_key=True),\n    sqlalchemy.Column(\"name\", sqlalchemy.VARCHAR),\n    sqlalchemy.Column(\"has_fiscalization\", sqlalchemy.BOOLEAN),\n    sqlalchemy.Column(\"depth\", sqlalchemy.FLOAT),",
+        "detail": "database",
+        "documentation": {
+            "value": "\n```python\nfrom database import DATABASE_CONNECTION_URI\n```\n\n```python\n\n\n```\n\n```python\nDATABASE_CONNECTION_URI = f'postgresql://{user}:{password}@{host}:{port}/{database}'\ndatabase = databases.Database(DATABASE_CONNECTION_URI)\nmetadata = sqlalchemy.MetaData()\nberths = sqlalchemy.Table(\n    \"berths\",\n    metadata,\n    sqlalchemy.Column(\"id\", sqlalchemy.Integer, primary_key=True),\n    sqlalchemy.Column(\"name\", sqlalchemy.VARCHAR),\n    sqlalchemy.Column(\"has_fiscalization\", sqlalchemy.BOOLEAN),\n    sqlalchemy.Column(\"depth\", sqlalchemy.FLOAT),\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "database",
+        "kind": 5,
+        "importPath": "database",
+        "description": "database",
+        "peekOfCode": "database = databases.Database(DATABASE_CONNECTION_URI)\nmetadata = sqlalchemy.MetaData()\nberths = sqlalchemy.Table(\n    \"berths\",\n    metadata,\n    sqlalchemy.Column(\"id\", sqlalchemy.Integer, primary_key=True),\n    sqlalchemy.Column(\"name\", sqlalchemy.VARCHAR),\n    sqlalchemy.Column(\"has_fiscalization\", sqlalchemy.BOOLEAN),\n    sqlalchemy.Column(\"depth\", sqlalchemy.FLOAT),\n)",
+        "detail": "database",
+        "documentation": {
+            "value": "\n```python\nfrom database import database\n```\n\n```python\n\n\n```\n\n```python\ndatabase = databases.Database(DATABASE_CONNECTION_URI)\nmetadata = sqlalchemy.MetaData()\nberths = sqlalchemy.Table(\n    \"berths\",\n    metadata,\n    sqlalchemy.Column(\"id\", sqlalchemy.Integer, primary_key=True),\n    sqlalchemy.Column(\"name\", sqlalchemy.VARCHAR),\n    sqlalchemy.Column(\"has_fiscalization\", sqlalchemy.BOOLEAN),\n    sqlalchemy.Column(\"depth\", sqlalchemy.FLOAT),\n)\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "metadata",
+        "kind": 5,
+        "importPath": "database",
+        "description": "database",
+        "peekOfCode": "metadata = sqlalchemy.MetaData()\nberths = sqlalchemy.Table(\n    \"berths\",\n    metadata,\n    sqlalchemy.Column(\"id\", sqlalchemy.Integer, primary_key=True),\n    sqlalchemy.Column(\"name\", sqlalchemy.VARCHAR),\n    sqlalchemy.Column(\"has_fiscalization\", sqlalchemy.BOOLEAN),\n    sqlalchemy.Column(\"depth\", sqlalchemy.FLOAT),\n)\ncost_queue = sqlalchemy.Table(",
+        "detail": "database",
+        "documentation": {
+            "value": "\n```python\nfrom database import metadata\n```\n\n```python\n\n\n```\n\n```python\nmetadata = sqlalchemy.MetaData()\nberths = sqlalchemy.Table(\n    \"berths\",\n    metadata,\n    sqlalchemy.Column(\"id\", sqlalchemy.Integer, primary_key=True),\n    sqlalchemy.Column(\"name\", sqlalchemy.VARCHAR),\n    sqlalchemy.Column(\"has_fiscalization\", sqlalchemy.BOOLEAN),\n    sqlalchemy.Column(\"depth\", sqlalchemy.FLOAT),\n)\ncost_queue = sqlalchemy.Table(\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "berths",
+        "kind": 5,
+        "importPath": "database",
+        "description": "database",
+        "peekOfCode": "berths = sqlalchemy.Table(\n    \"berths\",\n    metadata,\n    sqlalchemy.Column(\"id\", sqlalchemy.Integer, primary_key=True),\n    sqlalchemy.Column(\"name\", sqlalchemy.VARCHAR),\n    sqlalchemy.Column(\"has_fiscalization\", sqlalchemy.BOOLEAN),\n    sqlalchemy.Column(\"depth\", sqlalchemy.FLOAT),\n)\ncost_queue = sqlalchemy.Table(\n    \"cost_queue\",",
+        "detail": "database",
+        "documentation": {
+            "value": "\n```python\nfrom database import berths\n```\n\n```python\n\n\n```\n\n```python\nberths = sqlalchemy.Table(\n    \"berths\",\n    metadata,\n    sqlalchemy.Column(\"id\", sqlalchemy.Integer, primary_key=True),\n    sqlalchemy.Column(\"name\", sqlalchemy.VARCHAR),\n    sqlalchemy.Column(\"has_fiscalization\", sqlalchemy.BOOLEAN),\n    sqlalchemy.Column(\"depth\", sqlalchemy.FLOAT),\n)\ncost_queue = sqlalchemy.Table(\n    \"cost_queue\",\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "cost_queue",
+        "kind": 5,
+        "importPath": "database",
+        "description": "database",
+        "peekOfCode": "cost_queue = sqlalchemy.Table(\n    \"cost_queue\",\n    metadata,\n    sqlalchemy.Column(\"id\", sqlalchemy.Integer, primary_key=True),\n    sqlalchemy.Column(\"ship_details\", sqlalchemy.JSON),\n    sqlalchemy.Column(\"created_at\", sqlalchemy.DATETIME),\n)\nengine = sqlalchemy.create_engine(\n    DATABASE_CONNECTION_URI\n)",
+        "detail": "database",
+        "documentation": {
+            "value": "\n```python\nfrom database import cost_queue\n```\n\n```python\n\n\n```\n\n```python\ncost_queue = sqlalchemy.Table(\n    \"cost_queue\",\n    metadata,\n    sqlalchemy.Column(\"id\", sqlalchemy.Integer, primary_key=True),\n    sqlalchemy.Column(\"ship_details\", sqlalchemy.JSON),\n    sqlalchemy.Column(\"created_at\", sqlalchemy.DATETIME),\n)\nengine = sqlalchemy.create_engine(\n    DATABASE_CONNECTION_URI\n)\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "engine",
+        "kind": 5,
+        "importPath": "database",
+        "description": "database",
+        "peekOfCode": "engine = sqlalchemy.create_engine(\n    DATABASE_CONNECTION_URI\n)",
+        "detail": "database",
+        "documentation": {
+            "value": "\n```python\nfrom database import engine\n```\n\n```python\n\n\n```\n\n```python\nengine = sqlalchemy.create_engine(\n    DATABASE_CONNECTION_URI\n)\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "ShipType",
+        "kind": 6,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "class ShipType(str, Enum):\n    BulkCarrier = \"BulkCarrier\"\n    Other = \"Other\"\nclass ShipPurpose(str, Enum):\n    TransportBulkLiquid = \"TransportBulkLiquid\"\n    TransportBulkSolid = \"TransportBulkSolid\"\n    TransportGeneralCargo = \"TransportGeneralCargo\"\n    Other = \"Other\"\nclass CargoType(str, Enum):\n    Bulk = \"Bulk\"",
+        "detail": "main",
+        "documentation": {
+            "value": "\n```python\nfrom main import ShipType\n```\n\n```python\n\n\n```\n\n```python\nclass ShipType(str, Enum):\n    BulkCarrier = \"BulkCarrier\"\n    Other = \"Other\"\nclass ShipPurpose(str, Enum):\n    TransportBulkLiquid = \"TransportBulkLiquid\"\n    TransportBulkSolid = \"TransportBulkSolid\"\n    TransportGeneralCargo = \"TransportGeneralCargo\"\n    Other = \"Other\"\nclass CargoType(str, Enum):\n    Bulk = \"Bulk\"\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "ShipPurpose",
+        "kind": 6,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "class ShipPurpose(str, Enum):\n    TransportBulkLiquid = \"TransportBulkLiquid\"\n    TransportBulkSolid = \"TransportBulkSolid\"\n    TransportGeneralCargo = \"TransportGeneralCargo\"\n    Other = \"Other\"\nclass CargoType(str, Enum):\n    Bulk = \"Bulk\"\n    General = \"General\"\nclass ShipDTO(BaseModel):\n    code: str",
+        "detail": "main",
+        "documentation": {
+            "value": "\n```python\nfrom main import ShipPurpose\n```\n\n```python\n\n\n```\n\n```python\nclass ShipPurpose(str, Enum):\n    TransportBulkLiquid = \"TransportBulkLiquid\"\n    TransportBulkSolid = \"TransportBulkSolid\"\n    TransportGeneralCargo = \"TransportGeneralCargo\"\n    Other = \"Other\"\nclass CargoType(str, Enum):\n    Bulk = \"Bulk\"\n    General = \"General\"\nclass ShipDTO(BaseModel):\n    code: str\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "CargoType",
+        "kind": 6,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "class CargoType(str, Enum):\n    Bulk = \"Bulk\"\n    General = \"General\"\nclass ShipDTO(BaseModel):\n    code: str\n    is_off_shore: bool\n    ship_name: str\n    ship_type: ShipType\n    ship_purpose: ShipPurpose\n    draft_size_in_meters: float",
+        "detail": "main",
+        "documentation": {
+            "value": "\n```python\nfrom main import CargoType\n```\n\n```python\n\n\n```\n\n```python\nclass CargoType(str, Enum):\n    Bulk = \"Bulk\"\n    General = \"General\"\nclass ShipDTO(BaseModel):\n    code: str\n    is_off_shore: bool\n    ship_name: str\n    ship_type: ShipType\n    ship_purpose: ShipPurpose\n    draft_size_in_meters: float\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "ShipDTO",
+        "kind": 6,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "class ShipDTO(BaseModel):\n    code: str\n    is_off_shore: bool\n    ship_name: str\n    ship_type: ShipType\n    ship_purpose: ShipPurpose\n    draft_size_in_meters: float\n    cargo_weight: float\n    cargo_type: CargoType\n    estimated_mooring: datetime",
+        "detail": "main",
+        "documentation": {
+            "value": "\n```python\nfrom main import ShipDTO\n```\n\n```python\n\n\n```\n\n```python\nclass ShipDTO(BaseModel):\n    code: str\n    is_off_shore: bool\n    ship_name: str\n    ship_type: ShipType\n    ship_purpose: ShipPurpose\n    draft_size_in_meters: float\n    cargo_weight: float\n    cargo_type: CargoType\n    estimated_mooring: datetime\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "app = FastAPI()\n@app.on_event(\"startup\")\nasync def startup():\n    await database.connect()\n@app.on_event(\"shutdown\")\nasync def shutdown():\n    await database.disconnect()\n@app.get(\"/\")\nasync def root():\n    return { \"message\": \"Hello, world!\" }",
+        "detail": "main",
+        "documentation": {
+            "value": "\n```python\nfrom main import app\n```\n\n```python\n\n\n```\n\n```python\napp = FastAPI()\n@app.on_event(\"startup\")\nasync def startup():\n    await database.connect()\n@app.on_event(\"shutdown\")\nasync def shutdown():\n    await database.disconnect()\n@app.get(\"/\")\nasync def root():\n    return { \"message\": \"Hello, world!\" }\n```\n",
+            "supportThemeIcons": false
+        }
+    }
+]
