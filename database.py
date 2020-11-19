@@ -1,4 +1,4 @@
-import sqlalchemy
+from sqlalchemy import Column, Integer, VARCHAR, BOOLEAN, FLOAT, MetaData, Table, JSON, DATETIME, create_engine
 import databases
 from env import from_env
 
@@ -12,26 +12,26 @@ DATABASE_CONNECTION_URI = f'postgresql://{user}:{password}@{host}:{port}/{databa
 
 database = databases.Database(DATABASE_CONNECTION_URI)
 
-metadata = sqlalchemy.MetaData()
+metadata = MetaData()
 
-berths = sqlalchemy.Table(
+berths = Table(
     "berths",
     metadata,
-    sqlalchemy.Column("id", sqlalchemy.Integer, primary_key=True),
-    sqlalchemy.Column("name", sqlalchemy.VARCHAR),
-    sqlalchemy.Column("has_fiscalization", sqlalchemy.BOOLEAN),
-    sqlalchemy.Column("depth", sqlalchemy.FLOAT),
+    Column("id", Integer, primary_key=True),
+    Column("name", VARCHAR),
+    Column("has_fiscalization", BOOLEAN),
+    Column("depth", FLOAT),
 )
 
 
-cost_queue = sqlalchemy.Table(
+cost_queue = Table(
     "cost_queue",
     metadata,
-    sqlalchemy.Column("id", sqlalchemy.Integer, primary_key=True),
-    sqlalchemy.Column("ship_details", sqlalchemy.JSON),
-    sqlalchemy.Column("created_at", sqlalchemy.DATETIME),
+    Column("id", Integer, primary_key=True),
+    Column("ship_details", JSON),
+    Column("created_at", DATETIME),
 )
 
-engine = sqlalchemy.create_engine(
+engine = create_engine(
     DATABASE_CONNECTION_URI
 )
