@@ -51,13 +51,13 @@ async def create_queue_entry(ship: ShipDTO):
 
     ship_json = jsonable_encoder(ship)
 
-    query = cost_queue.insert().values(ship_details = ship_json, created_at = datetime.now())
+    query = cost_queue.insert().returning(cost_queue.c.id).values(ship_details = ship_json, created_at = datetime.now())
 
-    await database.execute(query)
+    entry_id = await database.execute(query)
 
     return {
         'entry': {
-            'id': 1,
+            'id': entry_id,
             'ship': ship_json,
             'createdAt': datetime.today()
         }
