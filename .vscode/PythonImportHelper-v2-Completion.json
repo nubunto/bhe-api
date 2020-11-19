@@ -524,10 +524,10 @@
         "kind": 6,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "class ShipType(str, Enum):\n    BulkCarrier = \"BulkCarrier\"\n    Other = \"Other\"\nclass ShipPurpose(str, Enum):\n    # TODO: add missing purposes\n    TransportBulkLiquid = \"TransportBulkLiquid\"\n    TransportBulkSolid = \"TransportBulkSolid\"\n    TransportGeneralCargo = \"TransportGeneralCargo\"\n    Dredging = \"Dredging\"\n    PortSupport = \"PortSupport\"",
+        "peekOfCode": "class ShipType(str, Enum):\n    BulkCarrier = \"BulkCarrier\"\n    Other = \"Other\"\nclass ShipPurpose(str, Enum):\n    Dredging = \"Dredging\"\n    PortSupport = \"PortSupport\"\n    Fishing = \"Fishing\"\n    MaritimeSupport = \"MaritimeSupport\"\n    Research = \"Research\"\n    TransportBulkLiquidAndGeneral = \"TransportBulkLiquidAndGeneral\"",
         "detail": "main",
         "documentation": {
-            "value": "\n```python\nfrom main import ShipType\n```\n\n```python\n\n\n```\n\n```python\nclass ShipType(str, Enum):\n    BulkCarrier = \"BulkCarrier\"\n    Other = \"Other\"\nclass ShipPurpose(str, Enum):\n    # TODO: add missing purposes\n    TransportBulkLiquid = \"TransportBulkLiquid\"\n    TransportBulkSolid = \"TransportBulkSolid\"\n    TransportGeneralCargo = \"TransportGeneralCargo\"\n    Dredging = \"Dredging\"\n    PortSupport = \"PortSupport\"\n```\n",
+            "value": "\n```python\nfrom main import ShipType\n```\n\n```python\n\n\n```\n\n```python\nclass ShipType(str, Enum):\n    BulkCarrier = \"BulkCarrier\"\n    Other = \"Other\"\nclass ShipPurpose(str, Enum):\n    Dredging = \"Dredging\"\n    PortSupport = \"PortSupport\"\n    Fishing = \"Fishing\"\n    MaritimeSupport = \"MaritimeSupport\"\n    Research = \"Research\"\n    TransportBulkLiquidAndGeneral = \"TransportBulkLiquidAndGeneral\"\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -536,10 +536,10 @@
         "kind": 6,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "class ShipPurpose(str, Enum):\n    # TODO: add missing purposes\n    TransportBulkLiquid = \"TransportBulkLiquid\"\n    TransportBulkSolid = \"TransportBulkSolid\"\n    TransportGeneralCargo = \"TransportGeneralCargo\"\n    Dredging = \"Dredging\"\n    PortSupport = \"PortSupport\"\n    Other = \"Other\"\n    def map_to_str_purpose(self):\n        # FIXME: return correct string",
+        "peekOfCode": "class ShipPurpose(str, Enum):\n    Dredging = \"Dredging\"\n    PortSupport = \"PortSupport\"\n    Fishing = \"Fishing\"\n    MaritimeSupport = \"MaritimeSupport\"\n    Research = \"Research\"\n    TransportBulkLiquidAndGeneral = \"TransportBulkLiquidAndGeneral\"\n    GeneralTransport = \"GeneralTransport\"\n    TubeRelease = \"TubeRelease\"\n    TransportBulkSolidAndGeneral = \"TransportBulkSolidAndGeneral\"",
         "detail": "main",
         "documentation": {
-            "value": "\n```python\nfrom main import ShipPurpose\n```\n\n```python\n\n\n```\n\n```python\nclass ShipPurpose(str, Enum):\n    # TODO: add missing purposes\n    TransportBulkLiquid = \"TransportBulkLiquid\"\n    TransportBulkSolid = \"TransportBulkSolid\"\n    TransportGeneralCargo = \"TransportGeneralCargo\"\n    Dredging = \"Dredging\"\n    PortSupport = \"PortSupport\"\n    Other = \"Other\"\n    def map_to_str_purpose(self):\n        # FIXME: return correct string\n```\n",
+            "value": "\n```python\nfrom main import ShipPurpose\n```\n\n```python\n\n\n```\n\n```python\nclass ShipPurpose(str, Enum):\n    Dredging = \"Dredging\"\n    PortSupport = \"PortSupport\"\n    Fishing = \"Fishing\"\n    MaritimeSupport = \"MaritimeSupport\"\n    Research = \"Research\"\n    TransportBulkLiquidAndGeneral = \"TransportBulkLiquidAndGeneral\"\n    GeneralTransport = \"GeneralTransport\"\n    TubeRelease = \"TubeRelease\"\n    TransportBulkSolidAndGeneral = \"TransportBulkSolidAndGeneral\"\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -584,10 +584,22 @@
         "kind": 2,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "def calculate_priority_score_for_ship(ship: Ship):\n    # FIXME: calculate priority score\n    # FIXME: add the following attributes to ship:\n    # - is_cargo_dangerous\n    # - is_cargo_important\n    # - cargo_validity_date\n    # - has_living_animals\n    return 10\nasync def calculate_cost_score_for_ship(ship: ShipDTO, database):\n    base_score = 10",
+        "peekOfCode": "def calculate_priority_score_for_ship(ship: Ship):\n    cost = 1\n    if(ship.is_cargo_dangerous == True):\n        cost += 10\n    if(ship.is_cargo_important == True):\n        cost += 10\n    if(ship.has_living_animals == True):\n        cost += 10\n    if(this.calculate_is_validity_near(ship) == True):\n        cost += 10",
         "detail": "main",
         "documentation": {
-            "value": "\n```python\nfrom main import calculate_priority_score_for_ship\n```\n\n```python\n\n\n```\n\n```python\ndef calculate_priority_score_for_ship(ship: Ship):\n    # FIXME: calculate priority score\n    # FIXME: add the following attributes to ship:\n    # - is_cargo_dangerous\n    # - is_cargo_important\n    # - cargo_validity_date\n    # - has_living_animals\n    return 10\nasync def calculate_cost_score_for_ship(ship: ShipDTO, database):\n    base_score = 10\n```\n",
+            "value": "\n```python\nfrom main import calculate_priority_score_for_ship\n```\n\n```python\n\n\n```\n\n```python\ndef calculate_priority_score_for_ship(ship: Ship):\n    cost = 1\n    if(ship.is_cargo_dangerous == True):\n        cost += 10\n    if(ship.is_cargo_important == True):\n        cost += 10\n    if(ship.has_living_animals == True):\n        cost += 10\n    if(this.calculate_is_validity_near(ship) == True):\n        cost += 10\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "calculate_is_validity_near",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def calculate_is_validity_near(ship: ShipDTO):\n    validityDate = datetime.strptime(ship.cargo_validity_date, \"%Y-%m-%d\")\n    now = datetime.strptime(datetime.now(), \"%Y-%m-%d\")\n    differenceOfDays = abs((now - validityDate).days)\n    if(differenceOfDays < 30):\n        return True\n    else:\n        return False\nasync def calculate_cost_score_for_ship(ship: ShipDTO, database):\n    base_score = 10",
+        "detail": "main",
+        "documentation": {
+            "value": "\n```python\nfrom main import calculate_is_validity_near\n```\n\n```python\n\n\n```\n\n```python\ndef calculate_is_validity_near(ship: ShipDTO):\n    validityDate = datetime.strptime(ship.cargo_validity_date, \"%Y-%m-%d\")\n    now = datetime.strptime(datetime.now(), \"%Y-%m-%d\")\n    differenceOfDays = abs((now - validityDate).days)\n    if(differenceOfDays < 30):\n        return True\n    else:\n        return False\nasync def calculate_cost_score_for_ship(ship: ShipDTO, database):\n    base_score = 10\n```\n",
             "supportThemeIcons": false
         }
     },
