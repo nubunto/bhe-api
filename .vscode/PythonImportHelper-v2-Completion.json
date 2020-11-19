@@ -357,10 +357,10 @@
         "kind": 5,
         "importPath": "database",
         "description": "database",
-        "peekOfCode": "engine = sqlalchemy.create_engine(\n    DATABASE_CONNECTION_URI\n)",
+        "peekOfCode": "engine = sqlalchemy.create_engine(\n    DATABASE_CONNECTION_URI\n)\n#metadata.create_all(engine)",
         "detail": "database",
         "documentation": {
-            "value": "\n```python\nfrom database import engine\n```\n\n```python\n\n\n```\n\n```python\nengine = sqlalchemy.create_engine(\n    DATABASE_CONNECTION_URI\n)\n```\n",
+            "value": "\n```python\nfrom database import engine\n```\n\n```python\n\n\n```\n\n```python\nengine = sqlalchemy.create_engine(\n    DATABASE_CONNECTION_URI\n)\n#metadata.create_all(engine)\n```\n",
             "supportThemeIcons": false
         }
     },

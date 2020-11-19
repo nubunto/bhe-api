@@ -35,3 +35,5 @@ cost_queue = sqlalchemy.Table(
 engine = sqlalchemy.create_engine(
     DATABASE_CONNECTION_URI
 )
+
+#metadata.create_all(engine)
