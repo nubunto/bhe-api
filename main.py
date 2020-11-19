@@ -11,12 +11,24 @@ class ShipType(str, Enum):
     Other = "Other"
 
 class ShipPurpose(str, Enum):
-    # TODO: add missing purposes
-    TransportBulkLiquid = "TransportBulkLiquid"
-    TransportBulkSolid = "TransportBulkSolid"
-    TransportGeneralCargo = "TransportGeneralCargo"
     Dredging = "Dredging"
     PortSupport = "PortSupport"
+    Fishing = "Fishing"
+    MaritimeSupport = "MaritimeSupport"
+    Research = "Research"
+    TransportBulkLiquidAndGeneral = "TransportBulkLiquidAndGeneral"
+    GeneralTransport = "GeneralTransport"
+    TubeRelease = "TubeRelease"
+    TransportBulkSolidAndGeneral = "TransportBulkSolidAndGeneral"
+    CableRelease = "CableRelease"
+    TransportBulkSolid = "TransportBulkSolid"
+    TransportBulkLiquid = "TransportBulkLiquid"
+    Pleasure = "Pleasure"
+    ContainerAndGeneral = "ContainerAndGeneral"  
+    Recreation = "Recreation"
+    ContainerTransport = "ContainerTransport"
+    VehicleTransport = "VehicleTransport"
+    PassengerTransport = "PassengerTransport"
     Other = "Other"
 
     def map_to_str_purpose(self):
@@ -25,8 +37,41 @@ class ShipPurpose(str, Enum):
             return "Dragagem"
         elif self == ShipPurpose.PortSupport:
             return "Apoio Portuário"
-        else:
+        elif self == ShipPurpose.Fishing:
+            return "Pesca"
+        elif self == ShipPurpose.MaritimeSupport:
+            return "Apoio Marítimo"
+        elif self == ShipPurpose.Research:
+            return "Pesquisa"
+        elif self == ShipPurpose.TransportBulkLiquidAndGeneral:
+            return "Transporte de Granel Líquido e Carga Geral"
+        elif self == ShipPurpose.GeneralTransport:
             return "Transporte de Carga Geral"
+        elif self == ShipPurpose.TubeRelease:
+            return "Lançamento de Tubos"
+        elif self == ShipPurpose.TransportBulkSolidAndGeneral:
+            return "Transporte de Granel Sólido e Carga Geral"
+        elif self == ShipPurpose.CableRelease:
+            return "Lançamento de Cabos"
+        elif self == ShipPurpose.TransportBulkSolid:
+            return "Transporte de Granel Sólido"
+        elif self == ShipPurpose.TransportBulkLiquid:
+            return "Transporte de Granel Líquido"
+        elif self == ShipPurpose.Pleasure:
+            return "Recreio"
+        elif self == ShipPurpose.ContainerAndGeneral:
+            return "Transporte de Contentores e Carga Geral"
+        elif self == ShipPurpose.Recreation:
+            return "Lazer"
+        elif self == ShipPurpose.ContainerTransport:
+            return "Transporte de Contentores"
+        elif self == ShipPurpose.VehicleTransport:
+            return "Transporte de Veiculos"
+        elif self == ShipPurpose.PassengerTransport:
+            return "Transporte de Passageiros"
+        else:
+            return "Other"
+
 
 class CargoType(str, Enum):
     Bulk = "Bulk"
@@ -47,6 +92,10 @@ class ShipDTO(BaseModel):
     estimated_unmooring: datetime
     needs_fiscalization: bool
     time_of_arrival_in_port: datetime
+    is_cargo_dangerous: bool
+    is_cargo_important: bool
+    cargo_validity_date: bool
+    has_living_animals: bool
 
 class Ship(BaseModel):
     code: str
@@ -65,6 +114,10 @@ class Ship(BaseModel):
     time_of_arrival_in_port: datetime
     priority_score: int = 0
     cost_score: int = 0
+    is_cargo_dangerous: bool
+    is_cargo_important: bool
+    cargo_validity_date: bool
+    has_living_animals: bool
 
 async def calculate_scores_for_ship(ship: ShipDTO, database):
     priority_score = calculate_priority_score_for_ship(ship)
@@ -72,13 +125,36 @@ async def calculate_scores_for_ship(ship: ShipDTO, database):
     return Ship(**ship.dict(), priority_score = priority_score, cost_score = cost_score)
 
 def calculate_priority_score_for_ship(ship: Ship):
-    # FIXME: calculate priority score
-    # FIXME: add the following attributes to ship:
-    # - is_cargo_dangerous
-    # - is_cargo_important
-    # - cargo_validity_date
-    # - has_living_animals
-    return 10
+
+    cost = 1
+
+    if(ship.is_cargo_dangerous == True):
+        cost += 10
+    
+
+    if(ship.is_cargo_important == True):
+        cost += 10
+    
+
+    if(ship.has_living_animals == True):
+        cost += 10
+    
+
+    if(this.calculate_is_validity_near(ship) == True):
+        cost += 10
+
+    return cost
+
+def calculate_is_validity_near(ship: ShipDTO):
+    validityDate = datetime.strptime(ship.cargo_validity_date, "%Y-%m-%d")
+    now = datetime.strptime(datetime.now(), "%Y-%m-%d")
+
+    differenceOfDays = abs((now - validityDate).days)
+
+    if(differenceOfDays < 30):
+        return True
+    else:
+        return False
 
 async def calculate_cost_score_for_ship(ship: ShipDTO, database):
     base_score = 10
