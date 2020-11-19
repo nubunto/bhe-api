@@ -1,4 +1,10 @@
-from sqlalchemy import Column, Integer, VARCHAR, BOOLEAN, FLOAT, MetaData, Table, JSON, DATETIME, create_engine
+from sqlalchemy import (
+    Column, ForeignKey, Integer, VARCHAR,
+    BOOLEAN, FLOAT, MetaData,
+    Table, JSON, DATETIME,
+    create_engine
+)
+
 import databases
 from env import from_env
 
@@ -30,6 +36,15 @@ cost_queue = Table(
     Column("id", Integer, primary_key=True),
     Column("ship_details", JSON),
     Column("created_at", DATETIME),
+)
+
+berths_priority_queue = Table(
+    "berth_priority_queue",
+    metadata,
+    Column("id", Integer, primary_key=True),
+    Column("berth_id", ForeignKey("berths.id")),
+    Column("priority", Integer, nullable=False),
+    Column("ship_details", JSON, nullable=False),
 )
 
 engine = create_engine(

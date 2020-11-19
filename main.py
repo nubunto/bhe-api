@@ -230,4 +230,12 @@ async def create_queue_entry(ship_dto: ShipDTO):
         }
     }
 
+@app.get("/cost-queue/")
+async def read_cost_queue_entries():
+    query = cost_queue.select()
+    entries = await database.fetch_all(query)
+
+    return {
+        'entries': entries
+    }
 
