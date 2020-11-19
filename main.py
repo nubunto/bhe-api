@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.encoders import jsonable_encoder
 from datetime import datetime
 from enum import Enum
 from pydantic import BaseModel
@@ -49,14 +50,16 @@ async def root():
 @app.post("/cost-queue/")
 async def create_queue_entry(ship: ShipDTO):
 
-    query = cost_queue.insert().values(ship_details = ship.dict(exclude={"estimated_mooring", "estimated_unmooring"}), created_at = datetime.now())
+    ship_json = jsonable_encoder(ship)
+
+    query = cost_queue.insert().values(ship_details = ship_json, created_at = datetime.now())
 
     await database.execute(query)
 
     return {
         'entry': {
             'id': 1,
-            'ship': ship,
+            'ship': ship_json,
             'createdAt': datetime.today()
         }
     }
