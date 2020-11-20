@@ -6,6 +6,7 @@ from models import (
     Ship, ShipDTO,
     calculate_scores_for_ship
 )
+from pspmetrics import PspMetrics
 
 app = FastAPI()
 
@@ -40,6 +41,16 @@ async def create_queue_entry(ship_dto: ShipDTO):
         }
     }
 
+@app.get("/berths/")
+async def avg_wait_time_by_ship_purpose():
+    query = berths.select()
+    entries = await database.fetch_all(query)
+
+    return {
+        'entries': entries
+    }
+
+
 @app.get("/cost-queue/")
 async def read_cost_queue_entries():
     query = cost_queue.select()
@@ -49,10 +60,44 @@ async def read_cost_queue_entries():
         'entries': entries
     }
 
-@app.get("/pspmetrics/")
-async def read_cost_queue_entries():
-    query = cost_queue.select()
-    entries = await database.fetch_all(query)
+#  ----------------- METRICS ------------------ #
+
+@app.get("/pspmetrics/time/purposes")
+async def avg_wait_time_by_ship_purpose():
+
+    metrics = PspMetrics(database)
+
+    entries = await metrics.avg_wait_time_by_ship_purpose()
+
+    return {
+        'entries': entries
+    }
+
+@app.get("/pspmetrics/time/purpose/{purpose}")
+async def avg_wait_time_by_ship_purpose(purpose: str):
+    metrics = PspMetrics(database)
+
+    entries = await metrics.avg_wait_time(purpose)
+
+    return {
+        'entries': entries
+    }
+
+@app.get("/pspmetrics/time/mooring/")
+async def avg_mooring_time_late():
+    metrics = PspMetrics(database)
+
+    entries = await metrics.avg_mooring_time_late()
+
+    return {
+        'entries': entries
+    }
+
+@app.get("/pspmetrics/time/unmooring/")
+async def avg_unmooring_time_late():
+    metrics = PspMetrics(database)
+
+    entries = await metrics.avg_unmooring_time_late()
 
     return {
         'entries': entries
