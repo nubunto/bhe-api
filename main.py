@@ -40,8 +40,6 @@ async def prioritize():
     # TODO: for each ship that has a berth, remove it from the queue
     return berth_assignments
 
-
-
 @app.post("/cost-queue/")
 async def create_queue_entry(ship_dto: ShipDTO):
 
