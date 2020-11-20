@@ -5,19 +5,54 @@ class PspMetrics:
   def __init__(self, database):
     self.database = database
 
-  def avg_wait_time(self, values):
-    return await self.database.execute("""
+  async def avg_wait_time(self, value):
+    return await database.fetch_all("""
             SELECT avg(desatracacao_efetiva - atracacao_efetiva)
             FROM estadia
             WHERE finalidade_embarcacao = :purpose
                   and (desatracacao_efetiva - atracacao_efetiva) > interval '1 hour'
-    """, values=values)
+    """,
+    {
+      'purpose': value
+    }
+    )
 
-    def avg_wait_time_by_ship_purpose():
-        return await self.database.execute("""
-        select avg(desatracacao_efetiva - atracacao_efetiva) abg, finalidade_embarcacao
-        from estadia 
-        where (desatracacao_efetiva - atracacao_efetiva) > interval '1 hour'
-        group by finalidade_embarcacao
-        order by abg desc;
-        """)
+  async def avg_wait_time_by_ship_purpose(self):
+
+    data = await database.fetch_all("""
+    select avg(desatracacao_efetiva - atracacao_efetiva) abg, finalidade_embarcacao
+    from estadia 
+    where (desatracacao_efetiva - atracacao_efetiva) > interval '1 hour'
+    group by finalidade_embarcacao
+    order by abg desc;
+    """)
+
+    return data
+
+  async def avg_mooring_time_late(self):
+
+    data = await database.fetch_all("""
+    select avg(atracacao_efetiva - atracacao_prevista) avg, finalidade_embarcacao
+    from estadia
+    group by finalidade_embarcacao
+    having avg(atracacao_efetiva - atracacao_prevista) > interval '0'
+    order by avg desc;
+    """)
+
+    avg_time_list = [dict(days = entry.get('avg').days, hours = entry.get('avg').seconds / 60 / 60, purpose = entry.get('finalidade_embarcacao')) for entry in data]
+
+    return avg_time_list
+
+  async def avg_unmooring_time_late(self):
+
+    data = await database.fetch_all("""
+    select avg(desatracacao_efetiva - desatracacao_prevista) avg, finalidade_embarcacao
+    from estadia
+    group by finalidade_embarcacao
+    having avg(desatracacao_efetiva - desatracacao_prevista) > interval '0'
+    order by avg desc;
+    """)
+
+    avg_time_list = [dict(days = entry.get('avg').days,hours = entry.get('avg').seconds / 60 / 60, purpose = entry.get('finalidade_embarcacao')) for entry in data]
+
+    return avg_time_list
