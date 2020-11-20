@@ -94,10 +94,10 @@ async def avg_wait_time_by_ship_purpose():
 async def avg_wait_time_by_ship_purpose(purpose: str):
     metrics = PspMetrics(database)
 
-    entries = await metrics.avg_wait_time(purpose)
+    wait_time = await metrics.avg_wait_time(purpose)
 
     return {
-        'entries': entries
+        'wait_time': wait_time
     }
 
 @app.get("/pspmetrics/time/mooring/")

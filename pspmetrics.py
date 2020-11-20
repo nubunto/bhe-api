@@ -6,28 +6,31 @@ class PspMetrics:
     self.database = database
 
   async def avg_wait_time(self, value):
-    return await database.fetch_all("""
-            SELECT avg(desatracacao_efetiva - atracacao_efetiva)
+    data = await database.fetch_one("""
+            SELECT avg(desatracacao_efetiva - atracacao_efetiva) as avg
             FROM estadia
             WHERE finalidade_embarcacao = :purpose
                   and (desatracacao_efetiva - atracacao_efetiva) > interval '1 hour'
-    """,
-    {
-      'purpose': value
-    }
+    """, {'purpose': value})
+    avg = data.get('avg')
+    return dict(
+      days = avg.days,
+      hours = avg.seconds / 60 / 60
     )
 
   async def avg_wait_time_by_ship_purpose(self):
 
     data = await database.fetch_all("""
-    select avg(desatracacao_efetiva - atracacao_efetiva) abg, finalidade_embarcacao
+    select avg(desatracacao_efetiva - atracacao_efetiva) avg, finalidade_embarcacao
     from estadia 
     where (desatracacao_efetiva - atracacao_efetiva) > interval '1 hour'
     group by finalidade_embarcacao
-    order by abg desc;
+    order by avg desc;
     """)
+    
+    avg_time_list = [dict(days = entry.get('avg').days, hours = entry.get('avg').seconds / 60 / 60, purpose = entry.get('finalidade_embarcacao')) for entry in data]
 
-    return data
+    return avg_time_list
 
   async def avg_mooring_time_late(self):
 
