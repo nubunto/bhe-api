@@ -173,7 +173,7 @@ async def calculate_cost_score_for_ship(ship: ShipDTO, database):
         "purpose": ship.ship_purpose.map_to_str_purpose()
     }
 
-    avg_wait_time = PspMetrics.avg_wait_time(values)
+    avg_wait_time = await PspMetrics(database).avg_wait_time(values)
 
     if avg_wait_time == None:
         avg_wait_time = timedelta(days=1)

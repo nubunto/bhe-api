@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.encoders import jsonable_encoder
 from datetime import datetime
 from database import berths, cost_queue, database
+from berthassigner import BerthAssigner
 from models import (
     Ship, ShipDTO,
     calculate_scores_for_ship
@@ -21,6 +22,25 @@ async def shutdown():
 @app.get("/")
 async def root():
     return { "ping": "pong!" }
+
+@app.post("/prioritize")
+async def prioritize():
+    berths_query = berths.select()
+    berth_list = await database.fetch_all(berths_query)
+
+    pqueue_query = cost_queue.select()
+    pqueue_list = await database.fetch_all(pqueue_query)
+
+    queued_ships = [entry.get('ship_details') for entry in pqueue_list]
+    berth_list = [dict(id = entry.get('id')) for entry in berth_list]
+
+    assigner = BerthAssigner(berth_list, queued_ships)
+    berth_assignments = assigner.calculate_prioritization()
+
+    # TODO: for each ship that has a berth, remove it from the queue
+    return berth_assignments
+
+
 
 @app.post("/cost-queue/")
 async def create_queue_entry(ship_dto: ShipDTO):
@@ -59,8 +79,6 @@ async def read_cost_queue_entries():
     return {
         'entries': entries
     }
-
-#  ----------------- METRICS ------------------ #
 
 @app.get("/pspmetrics/time/purposes")
 async def avg_wait_time_by_ship_purpose():
