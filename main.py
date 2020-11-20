@@ -31,13 +31,14 @@ async def prioritize():
     pqueue_query = cost_queue.select()
     pqueue_list = await database.fetch_all(pqueue_query)
 
-    queued_ships = [entry.get('ship_details') for entry in pqueue_list]
+    queued_ships = [dict(ship_details = entry.get('ship_details'), entry_id = entry.get('id')) for entry in pqueue_list]
     berth_list = [dict(id = entry.get('id')) for entry in berth_list]
 
     assigner = BerthAssigner(berth_list, queued_ships)
     berth_assignments = assigner.calculate_prioritization()
 
-    # TODO: for each ship that has a berth, remove it from the queue
+    # TODO: for each ship in a prioritized berth, remove it from the queue and add it to the priority queue for that berth
+    # see the berth_priority_queue table
     return berth_assignments
 
 @app.post("/cost-queue/")

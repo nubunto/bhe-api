@@ -1,4 +1,5 @@
 from ortools.linear_solver import pywraplp
+import random
 
 class BerthAssigner():
     def __init__(self, berths, queued_ships):
@@ -17,15 +18,16 @@ class BerthAssigner():
         for i, berth in enumerate(self.berths):
             for j, ship in enumerate(self.queued_ships):
                 # TODO: add cost_score to berth
-                cost_matrix[i].append(ship['cost_score'] + j)
+                cost_matrix[i].append(int(ship['ship_details']['cost_score'] + random.uniform(10, 50)))
 
         matrix_vars = {}
-        for i, berth in enumerate(self.berths):
+        for i in range(num_berths):
             for j in range(num_ships):
-                matrix_vars[i, j] = solver.IntVar(0, 1, f"berth={berth['id']}")
+                matrix_vars[i, j] = solver.IntVar(0, 1, '')
         
         for i in range(num_berths):
             solver.Add(solver.Sum([matrix_vars[i, j] for j in range(num_ships)]) <= 1)
+
         for j in range(num_ships):
             solver.Add(solver.Sum([matrix_vars[i, j] for i in range(num_berths)]) == 1)
 
@@ -45,9 +47,9 @@ class BerthAssigner():
                         berth_id = berth['id']
                         ship = self.queued_ships[j]
                         if berth_id in berths:
-                            berths[berth_id].ships.append(ship)
+                            berths[berth_id].append(ship)
                         else:
-                            berths[berth_id].ships = [ship]
+                            berths[berth_id] = [ship]
         return self.__assemble_berth_list(berths)
     
     def __assemble_berth_list(self, berths):
@@ -55,7 +57,7 @@ class BerthAssigner():
         for berth_id in berths:
             berth_list.append({
                 'berth_id': berth_id,
-                'ships': berths[berth_id]['ships']
+                'ships': berths[berth_id]
             })
         return berth_list
 
