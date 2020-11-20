@@ -49,3 +49,11 @@ async def read_cost_queue_entries():
         'entries': entries
     }
 
+@app.get("/pspmetrics/")
+async def read_cost_queue_entries():
+    query = cost_queue.select()
+    entries = await database.fetch_all(query)
+
+    return {
+        'entries': entries
+    }
