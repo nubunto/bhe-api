@@ -59,3 +59,22 @@ class PspMetrics:
     avg_time_list = [dict(days = entry.get('avg').days,hours = entry.get('avg').seconds / 60 / 60, purpose = entry.get('finalidade_embarcacao')) for entry in data]
 
     return avg_time_list
+
+  async def moorings_per_month_in_year(self, year):
+    data = await database.fetch_all("""
+      SELECT
+        DATE_PART('month', atracacao_efetiva) as month,
+        count(*) as count
+      FROM estadia
+      WHERE
+        DATE_PART('year', atracacao_efetiva) = :year
+        AND finalidade_embarcacao in (
+          'Transporte de Granel Sólido',
+          'Transporte de Granel Líquido'
+        )
+      GROUP BY month
+    """, values={'year': year})
+
+    count_list = [dict(month = entry.get('month'), count = entry.get('count')) for entry in data]
+
+    return count_list

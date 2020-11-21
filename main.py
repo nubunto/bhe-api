@@ -10,6 +10,7 @@ from models import (
 from pspmetrics import PspMetrics
 
 app = FastAPI()
+metrics = PspMetrics(database)
 
 @app.on_event("startup")
 async def startup():
@@ -43,7 +44,6 @@ async def prioritize():
 
 @app.post("/cost-queue/")
 async def create_queue_entry(ship_dto: ShipDTO):
-
     ship = await calculate_scores_for_ship(ship_dto, database)
 
     ship_json = jsonable_encoder(ship)
@@ -62,8 +62,7 @@ async def create_queue_entry(ship_dto: ShipDTO):
 
 @app.get("/berths/")
 async def avg_wait_time_by_ship_purpose():
-    query = berths.select()
-    entries = await database.fetch_all(query)
+    entries = await database.fetch_all(berths.select())
 
     return {
         'entries': entries
@@ -72,8 +71,7 @@ async def avg_wait_time_by_ship_purpose():
 
 @app.get("/cost-queue/")
 async def read_cost_queue_entries():
-    query = cost_queue.select()
-    entries = await database.fetch_all(query)
+    entries = await database.fetch_all(query.select())
 
     return {
         'entries': entries
@@ -81,9 +79,6 @@ async def read_cost_queue_entries():
 
 @app.get("/pspmetrics/time/purposes")
 async def avg_wait_time_by_ship_purpose():
-
-    metrics = PspMetrics(database)
-
     entries = await metrics.avg_wait_time_by_ship_purpose()
 
     return {
@@ -92,8 +87,6 @@ async def avg_wait_time_by_ship_purpose():
 
 @app.get("/pspmetrics/time/purpose/{purpose}")
 async def avg_wait_time_by_ship_purpose(purpose: str):
-    metrics = PspMetrics(database)
-
     wait_time = await metrics.avg_wait_time(purpose)
 
     return {
@@ -102,8 +95,6 @@ async def avg_wait_time_by_ship_purpose(purpose: str):
 
 @app.get("/pspmetrics/time/mooring/")
 async def avg_mooring_time_late():
-    metrics = PspMetrics(database)
-
     entries = await metrics.avg_mooring_time_late()
 
     return {
@@ -112,9 +103,15 @@ async def avg_mooring_time_late():
 
 @app.get("/pspmetrics/time/unmooring/")
 async def avg_unmooring_time_late():
-    metrics = PspMetrics(database)
-
     entries = await metrics.avg_unmooring_time_late()
+
+    return {
+        'entries': entries
+    }
+
+@app.get("/pspmetrics/count/moorings-per-month")
+async def count_moorings_per_month(year: int):
+    entries = await metrics.moorings_per_month_in_year(year)
 
     return {
         'entries': entries
