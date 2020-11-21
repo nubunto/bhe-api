@@ -41,7 +41,13 @@ async def prioritize():
     ship_quantity_query = select([berths.c.id, berths.c.has_fiscalization, berths.c.depth, func.count(berths_priority_queue.c.ship_details).label('count')]).select_from(berths_priority_queue.join(berths)).group_by(berths.c.id)
     berth_and_ship_quantity = await database.fetch_all(ship_quantity_query)
 
-    queued_ships = [dict(ship_details = entry.get('ship_details'), entry_id = entry.get('id')) for entry in pqueue_list]
+    queued_ships = [
+        dict(
+            ship_details = entry.get('ship_details'),
+            entry_id = entry.get('id')
+        ) for entry in pqueue_list
+    ]
+
     berth_list = [
         dict(
             id = entry.get('id'),
@@ -49,7 +55,8 @@ async def prioritize():
             total_ships_in_queue = entry.get('count'),
             depth = entry.get('depth')
         )
-        for entry in berth_and_ship_quantity]
+        for entry in berth_and_ship_quantity
+    ]
 
     assigner = BerthAssigner(berth_list, queued_ships)
     berth_assignments = assigner.calculate_prioritization()
@@ -80,7 +87,7 @@ async def create_queue_entry(ship_dto: ShipDTO):
         'entry': {
             'id': entry_id,
             'ship': ship_json,
-            'createdAt': datetime.today()
+            'created_at': datetime.today()
         }
     }
 
@@ -133,7 +140,6 @@ async def priority_queue_for_all_berths():
             response[berth_id] = dict(ships = [ship])
     
     return response
-
 
 @app.get("/pspmetrics/time/purposes")
 async def avg_wait_time_by_ship_purpose():
