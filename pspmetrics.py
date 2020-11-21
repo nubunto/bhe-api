@@ -5,12 +5,16 @@ class PspMetrics:
   def __init__(self, database):
     self.database = database
 
+  def __calculate_hours_from_timedelta(self, dt):
+    return dt.seconds / 60 / 60
+
   async def avg_wait_time(self, value):
     data = await database.fetch_one("""
-            SELECT avg(desatracacao_efetiva - atracacao_efetiva) as avg
-            FROM estadia
-            WHERE finalidade_embarcacao = :purpose
-                  and (desatracacao_efetiva - atracacao_efetiva) > interval '1 hour'
+      SELECT avg(desatracacao_efetiva - atracacao_efetiva) as avg
+      FROM estadia
+      WHERE
+        finalidade_embarcacao = :purpose
+        AND (desatracacao_efetiva - atracacao_efetiva) > interval '1 hour'
     """, {'purpose': value})
     avg = data.get('avg')
     return dict(
@@ -21,25 +25,44 @@ class PspMetrics:
   async def avg_wait_time_by_ship_purpose(self):
 
     data = await database.fetch_all("""
-    select avg(desatracacao_efetiva - atracacao_efetiva) avg, finalidade_embarcacao
-    from estadia 
-    where (desatracacao_efetiva - atracacao_efetiva) > interval '1 hour'
-    group by finalidade_embarcacao
-    order by avg desc;
+      SELECT
+        AVG(desatracacao_efetiva - atracacao_efetiva) avg,
+        finalidade_embarcacao
+      FROM estadia
+      WHERE (desatracacao_efetiva - atracacao_efetiva) > interval '1 hour'
+            AND finalidade_embarcacao IN (
+              'Transporte de Granel Sólido',
+              'Transporte de Granel Líquido'
+            )
+      GROUP BY finalidade_embarcacao
+      ORDER BY avg DESC;
     """)
-    
-    avg_time_list = [dict(days = entry.get('avg').days, hours = entry.get('avg').seconds / 60 / 60, purpose = entry.get('finalidade_embarcacao')) for entry in data]
+
+    avg_time_list = [
+      dict(
+        days = entry.get('avg').days,
+        hours = self.__calculate_hours_from_timedelta(entry.get('avg')),
+        purpose = entry.get('finalidade_embarcacao')
+      )
+      for entry in data
+    ]
 
     return avg_time_list
 
   async def avg_mooring_time_late(self):
 
     data = await database.fetch_all("""
-    select avg(atracacao_efetiva - atracacao_prevista) avg, finalidade_embarcacao
-    from estadia
-    group by finalidade_embarcacao
-    having avg(atracacao_efetiva - atracacao_prevista) > interval '0'
-    order by avg desc;
+    SELECT
+      AVG(atracacao_efetiva - atracacao_prevista) avg,
+      finalidade_embarcacao
+    FROM estadia
+    WHERE finalidade_embarcacao IN (
+        'Transporte de Granel Sólido',
+        'Transporte de Granel Líquido'
+    )
+    GROUP BY finalidade_embarcacao
+    HAVING AVG(atracacao_efetiva - atracacao_prevista) > interval '0'
+    ORDER BY avg DESC;
     """)
 
     avg_time_list = [dict(days = entry.get('avg').days, hours = entry.get('avg').seconds / 60 / 60, purpose = entry.get('finalidade_embarcacao')) for entry in data]
@@ -49,11 +72,17 @@ class PspMetrics:
   async def avg_unmooring_time_late(self):
 
     data = await database.fetch_all("""
-    select avg(desatracacao_efetiva - desatracacao_prevista) avg, finalidade_embarcacao
-    from estadia
-    group by finalidade_embarcacao
-    having avg(desatracacao_efetiva - desatracacao_prevista) > interval '0'
-    order by avg desc;
+      SELECT
+        AVG(desatracacao_efetiva - desatracacao_prevista) avg,
+        finalidade_embarcacao
+      FROM estadia
+      WHERE finalidade_embarcacao IN (
+        'Transporte de Granel Sólido',
+        'Transporte de Granel Líquido'
+      )
+      GROUP BY finalidade_embarcacao
+      HAVING AVG(desatracacao_efetiva - desatracacao_prevista) > interval '0'
+      ORDER BY avg DESC;
     """)
 
     avg_time_list = [dict(days = entry.get('avg').days,hours = entry.get('avg').seconds / 60 / 60, purpose = entry.get('finalidade_embarcacao')) for entry in data]
