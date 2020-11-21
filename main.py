@@ -57,11 +57,6 @@ async def prioritize():
             delete_query = cost_queue.delete().where(cost_queue.c.id == entry_id)
             await database.execute(delete_query)
 
-
-
-
-    # TODO: for each ship in a prioritized berth, remove it from the cost_queue and add it to the priority_queue for that berth
-    # see the berths_priority_queue table
     return berth_assignments
 
 @app.post("/cost-queue/")
