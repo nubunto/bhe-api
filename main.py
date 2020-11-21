@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.encoders import jsonable_encoder
 from fastapi.middleware.cors import CORSMiddleware
 from datetime import datetime
-from database import berths, cost_queue, database
+from database import berths, cost_queue, database, berths_priority_queue
 from berthassigner import BerthAssigner
 from models import (
     Ship, ShipDTO,
@@ -45,8 +45,23 @@ async def prioritize():
     assigner = BerthAssigner(berth_list, queued_ships)
     berth_assignments = assigner.calculate_prioritization()
 
-    # TODO: for each ship in a prioritized berth, remove it from the queue and add it to the priority queue for that berth
-    # see the berth_priority_queue table
+    print(berth_assignments)
+
+    for registry in berth_assignments:
+        for ship in registry['ships']:
+            entry_id = ship['entry_id']
+            
+            insert_query = berths_priority_queue.insert()
+            await database.execute(insert_query, values={'berth_id': registry['berth_id'] ,'priority':ship['ship_details']['priority_score'] , 'ship_details': ship['ship_details']})
+            
+            delete_query = cost_queue.delete().where(cost_queue.c.id == entry_id)
+            await database.execute(delete_query)
+
+
+
+
+    # TODO: for each ship in a prioritized berth, remove it from the cost_queue and add it to the priority_queue for that berth
+    # see the berths_priority_queue table
     return berth_assignments
 
 @app.post("/cost-queue/")
