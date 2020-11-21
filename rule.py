@@ -1,7 +1,5 @@
 from pydantic import BaseModel
 
-__HIGH_COST = 1000
-
 class BerthRuleData(BaseModel):
     depth_in_meters: float
     has_fiscalization: bool
@@ -11,6 +9,8 @@ class ShipRuleData(BaseModel):
     needs_fiscalization: bool
 
 class Rule():
+    HIGH_COST = 1000
+
     def __init__(self, berth: BerthRuleData, ship: ShipRuleData):
         self.berth = berth
         self.ship = ship
@@ -21,13 +21,13 @@ class Rule():
 class BerthDepthVsShipDepthRule(Rule):
     def calculate_cost(self):
         if self.berth.depth_in_meters < self.ship.draft_size_in_meters:
-            return __HIGH_COST
+            return Rule.HIGH_COST
         return 0
 
 class BerthHasFiscalizationVsShipNeedsFiscalization(Rule):
     def calculate_cost(self):
         if not self.berth.has_fiscalization and self.ship.needs_fiscalization:
-            return __HIGH_COST
+            return Rule.HIGH_COST
         return 0
 
 class RuleCostCalculator:
@@ -36,6 +36,6 @@ class RuleCostCalculator:
     
     def calculate_aggregate_cost_for_rules(self):
         base_score = 0
-        for rule in rules:
+        for rule in self.rules:
             base_score += rule.calculate_cost()
         return base_score

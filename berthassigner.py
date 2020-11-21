@@ -18,7 +18,17 @@ class BerthAssigner():
 
         for i, berth in enumerate(self.berths):
             for j, ship in enumerate(self.queued_ships):
-                cost_matrix[i].append(int(ship['ship_details']['cost_score'] + math.ceil(berth['total_ships_in_queue'] * 0.7)))
+                berth_rule_data = BerthRuleData(
+                    has_fiscalization = berth['has_fiscalization'],
+                    depth_in_meters = berth['depth']
+                )
+                ship_rule_data = ShipRuleData(
+                    draft_size_in_meters = ship['ship_details']['draft_size_in_meters'],
+                    needs_fiscalization = ship['ship_details']['needs_fiscalization']
+                )
+                rules = [rule(berth_rule_data, ship_rule_data) for rule in [BerthDepthVsShipDepthRule, BerthHasFiscalizationVsShipNeedsFiscalization]]
+                cost_calculator = RuleCostCalculator(rules)
+                cost_matrix[i].append(int(ship['ship_details']['cost_score'] + math.ceil(berth['total_ships_in_queue'] * 0.7) + cost_calculator.calculate_aggregate_cost_for_rules()))
 
         matrix_vars = {}
         for i in range(num_berths):

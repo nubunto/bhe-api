@@ -38,13 +38,18 @@ async def prioritize():
     pqueue_query = cost_queue.select()
     pqueue_list = await database.fetch_all(pqueue_query)
 
-    ship_quantity_query = select([berths.c.id, func.count(berths_priority_queue.c.ship_details).label('count')]).select_from(berths_priority_queue.join(berths)).group_by(berths.c.id)
+    ship_quantity_query = select([berths.c.id, berths.c.has_fiscalization, berths.c.depth, func.count(berths_priority_queue.c.ship_details).label('count')]).select_from(berths_priority_queue.join(berths)).group_by(berths.c.id)
     berth_and_ship_quantity = await database.fetch_all(ship_quantity_query)
 
     queued_ships = [dict(ship_details = entry.get('ship_details'), entry_id = entry.get('id')) for entry in pqueue_list]
-    berth_list = [dict(id = entry.get('id'), total_ships_in_queue = entry.get('count')) for entry in berth_and_ship_quantity]
-
-    print(berth_list)
+    berth_list = [
+        dict(
+            id = entry.get('id'),
+            has_fiscalization = entry.get('has_fiscalization'),
+            total_ships_in_queue = entry.get('count'),
+            depth = entry.get('depth')
+        )
+        for entry in berth_and_ship_quantity]
 
     assigner = BerthAssigner(berth_list, queued_ships)
     berth_assignments = assigner.calculate_prioritization()
@@ -54,7 +59,7 @@ async def prioritize():
             entry_id = ship['entry_id']
             
             insert_query = berths_priority_queue.insert()
-            await database.execute(insert_query, values={'berth_id': registry['berth_id'] ,'priority':ship['ship_details']['priority_score'] , 'ship_details': ship['ship_details']})
+            await database.execute(insert_query, values={'berth_id': registry['berth_id'], 'priority': ship['ship_details']['priority_score'] , 'ship_details': ship['ship_details']})
             
             delete_query = cost_queue.delete().where(cost_queue.c.id == entry_id)
             await database.execute(delete_query)
