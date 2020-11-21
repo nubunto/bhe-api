@@ -46,8 +46,6 @@ async def prioritize():
     assigner = BerthAssigner(berth_list, queued_ships)
     berth_assignments = assigner.calculate_prioritization()
 
-    print(berth_assignments)
-
     for registry in berth_assignments:
         for ship in registry['ships']:
             entry_id = ship['entry_id']
