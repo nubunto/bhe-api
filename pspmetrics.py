@@ -8,7 +8,7 @@ class PspMetrics:
   def __calculate_hours_from_timedelta(self, dt):
     return dt.seconds / 60 / 60
 
-  async def avg_wait_time(self, value):
+  async def avg_wait_time_in_days(self, value):
     data = await database.fetch_one("""
       SELECT avg(desatracacao_efetiva - atracacao_efetiva) as avg
       FROM estadia
@@ -17,10 +17,11 @@ class PspMetrics:
         AND (desatracacao_efetiva - atracacao_efetiva) > interval '1 hour'
     """, {'purpose': value})
     avg = data.get('avg')
-    return dict(
-      days = avg.days,
-      hours = avg.seconds / 60 / 60
-    )
+
+    if avg == None:
+      return 0
+    
+    return avg.days
 
   async def avg_wait_time_by_ship_purpose(self):
 

@@ -1,5 +1,5 @@
 from ortools.linear_solver import pywraplp
-import random
+import math
 
 class BerthAssigner():
     def __init__(self, berths, queued_ships):
@@ -17,8 +17,7 @@ class BerthAssigner():
 
         for i, berth in enumerate(self.berths):
             for j, ship in enumerate(self.queued_ships):
-                # TODO: add cost_score to berth
-                cost_matrix[i].append(int(ship['ship_details']['cost_score'] + random.uniform(10, 50)))
+                cost_matrix[i].append(int(ship['ship_details']['cost_score'] + math.ceil(berth['total_ships_in_queue'] * 0.7)))
 
         matrix_vars = {}
         for i in range(num_berths):

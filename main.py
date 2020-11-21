@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.encoders import jsonable_encoder
 from fastapi.middleware.cors import CORSMiddleware
 from datetime import datetime
-from sqlalchemy import desc
+from sqlalchemy import desc, select,func
 from database import berths, cost_queue, berths_priority_queue, database
 from berthassigner import BerthAssigner
 from models import (
@@ -34,14 +34,17 @@ async def root():
 
 @app.post("/prioritize")
 async def prioritize():
-    berths_query = berths.select()
-    berth_list = await database.fetch_all(berths_query)
 
     pqueue_query = cost_queue.select()
     pqueue_list = await database.fetch_all(pqueue_query)
 
+    ship_quantity_query = select([berths.c.id, func.count(berths_priority_queue.c.ship_details).label('count')]).select_from(berths_priority_queue.join(berths)).group_by(berths.c.id)
+    berth_and_ship_quantity = await database.fetch_all(ship_quantity_query)
+
     queued_ships = [dict(ship_details = entry.get('ship_details'), entry_id = entry.get('id')) for entry in pqueue_list]
-    berth_list = [dict(id = entry.get('id')) for entry in berth_list]
+    berth_list = [dict(id = entry.get('id'), total_ships_in_queue = entry.get('count')) for entry in berth_and_ship_quantity]
+
+    print(berth_list)
 
     assigner = BerthAssigner(berth_list, queued_ships)
     berth_assignments = assigner.calculate_prioritization()
@@ -77,7 +80,7 @@ async def create_queue_entry(ship_dto: ShipDTO):
     }
 
 @app.get("/berths/")
-async def avg_wait_time_by_ship_purpose():
+async def get_berths():
     entries = await database.fetch_all(berths.select())
 
     return {
@@ -133,14 +136,6 @@ async def avg_wait_time_by_ship_purpose():
 
     return {
         'entries': entries
-    }
-
-@app.get("/pspmetrics/time/purpose/{purpose}")
-async def avg_wait_time_by_ship_purpose(purpose: str):
-    wait_time = await metrics.avg_wait_time(purpose)
-
-    return {
-        'wait_time': wait_time
     }
 
 @app.get("/pspmetrics/time/mooring/")

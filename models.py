@@ -169,18 +169,13 @@ async def calculate_cost_score_for_ship(ship: ShipDTO, database):
     # add 1% of the weight of the ship's cargo to the cost
     base_score += math.ceil(ship.cargo_weight * 0.01)
 
-    values = {
-        "purpose": ship.ship_purpose.map_to_str_purpose()
-    }
+    purpose = ship.ship_purpose.map_to_str_purpose()
 
-    avg_wait_time = await PspMetrics(database).avg_wait_time(values)
+    avg_wait_time_in_days = await PspMetrics(database).avg_wait_time_in_days(purpose)
 
-    if avg_wait_time == None:
-        avg_wait_time = timedelta(days=1)
-
-    if avg_wait_time < timedelta(days = 1):
+    if avg_wait_time_in_days < 1:
         base_score += 10
-    elif avg_wait_time > timedelta(days = 1) < timedelta(days = 5):
+    elif avg_wait_time_in_days > 1 and avg_wait_time_in_days < 5:
         base_score += 20
     else:
         base_score += 40
