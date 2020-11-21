@@ -94,6 +94,40 @@ async def read_cost_queue_entries():
         'entries': entries
     }
 
+@app.get("/priority-queue/{berth_id}")
+async def priority_queue_for_berth(berth_id: int):
+    query = berths_priority_queue.select().select_from(berths_priority_queue.join(berths)).where(berths_priority_queue.c.berth_id == berth_id)
+    entries = await database.fetch_all(query)
+
+    response = [dict(details = entry.get('ship_details'), entry_id = entry.get('id')) for entry in entries]
+    return response
+
+@app.delete("/priority-queue/{berth_id}/{entry_id}")
+async def delete_entry_for_berth_priority_queue(berth_id: int, entry_id: int):
+    query = berths_priority_queue.delete().where(berths_priority_queue.c.berth_id == berth_id).where(berths_priority_queue.c.id == entry_id)
+    await database.execute(query)
+    return {'message': 'OK'}
+
+@app.get("/priority-queue/")
+async def priority_queue_for_all_berths():
+    query = berths_priority_queue.select().select_from(berths_priority_queue.join(berths))
+    entries = await database.fetch_all(query)
+
+    response = {}
+    for entry in entries:
+        berth_id = entry.get('berth_id')
+        ship = {
+            'details': entry.get('ship_details'),
+            'entry_id': entry.get('id')
+        }
+        if berth_id in response:
+            response[berth_id]['ships'].append(ship)
+        else:
+            response[berth_id] = dict(ships = [ship])
+    
+    return response
+
+
 @app.get("/pspmetrics/time/purposes")
 async def avg_wait_time_by_ship_purpose():
     entries = await metrics.avg_wait_time_by_ship_purpose()
