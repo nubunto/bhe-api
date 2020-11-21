@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.encoders import jsonable_encoder
+from fastapi.middleware.cors import CORSMiddleware
 from datetime import datetime
 from database import berths, cost_queue, database
 from berthassigner import BerthAssigner
@@ -11,6 +12,12 @@ from pspmetrics import PspMetrics
 
 app = FastAPI()
 metrics = PspMetrics(database)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["GET", "POST", "PUT", "DELETE"]
+)
 
 @app.on_event("startup")
 async def startup():
@@ -71,7 +78,7 @@ async def avg_wait_time_by_ship_purpose():
 
 @app.get("/cost-queue/")
 async def read_cost_queue_entries():
-    entries = await database.fetch_all(query.select())
+    entries = await database.fetch_all(cost_queue.select())
 
     return {
         'entries': entries
