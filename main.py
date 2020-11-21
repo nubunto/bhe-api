@@ -2,7 +2,8 @@ from fastapi import FastAPI
 from fastapi.encoders import jsonable_encoder
 from fastapi.middleware.cors import CORSMiddleware
 from datetime import datetime
-from database import berths, cost_queue, database, berths_priority_queue
+from sqlalchemy import desc
+from database import berths, cost_queue, berths_priority_queue, database
 from berthassigner import BerthAssigner
 from models import (
     Ship, ShipDTO,
@@ -96,7 +97,7 @@ async def read_cost_queue_entries():
 
 @app.get("/priority-queue/{berth_id}")
 async def priority_queue_for_berth(berth_id: int):
-    query = berths_priority_queue.select().select_from(berths_priority_queue.join(berths)).where(berths_priority_queue.c.berth_id == berth_id)
+    query = berths_priority_queue.select().select_from(berths_priority_queue.join(berths)).where(berths_priority_queue.c.berth_id == berth_id).order_by(desc(berths_priority_queue.c.priority))
     entries = await database.fetch_all(query)
 
     response = [dict(details = entry.get('ship_details'), entry_id = entry.get('id')) for entry in entries]
@@ -104,7 +105,7 @@ async def priority_queue_for_berth(berth_id: int):
 
 @app.delete("/priority-queue/{berth_id}/{entry_id}")
 async def delete_entry_for_berth_priority_queue(berth_id: int, entry_id: int):
-    query = berths_priority_queue.delete().where(berths_priority_queue.c.berth_id == berth_id).where(berths_priority_queue.c.id == entry_id)
+    query = berths_priority_queue.delete().where(berths_priority_queue.c.berth_id == berth_id).where(berths_priority_queue.c.id == entry_id).order_by(desc(berths_priority_queue.c.priority))
     await database.execute(query)
     return {'message': 'OK'}
 
