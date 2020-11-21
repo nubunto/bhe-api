@@ -32,8 +32,7 @@ class PspMetrics:
       FROM estadia
       WHERE (desatracacao_efetiva - atracacao_efetiva) > interval '1 hour'
             AND finalidade_embarcacao IN (
-              'Transporte de Granel Sólido',
-              'Transporte de Granel Líquido'
+              'Transporte de Granel Sólido'
             )
       GROUP BY finalidade_embarcacao
       ORDER BY avg DESC;
@@ -58,8 +57,7 @@ class PspMetrics:
       finalidade_embarcacao
     FROM estadia
     WHERE finalidade_embarcacao IN (
-        'Transporte de Granel Sólido',
-        'Transporte de Granel Líquido'
+        'Transporte de Granel Sólido'
     )
     GROUP BY finalidade_embarcacao
     HAVING AVG(atracacao_efetiva - atracacao_prevista) > interval '0'
@@ -78,8 +76,7 @@ class PspMetrics:
         finalidade_embarcacao
       FROM estadia
       WHERE finalidade_embarcacao IN (
-        'Transporte de Granel Sólido',
-        'Transporte de Granel Líquido'
+        'Transporte de Granel Sólido'
       )
       GROUP BY finalidade_embarcacao
       HAVING AVG(desatracacao_efetiva - desatracacao_prevista) > interval '0'
@@ -99,8 +96,7 @@ class PspMetrics:
       WHERE
         DATE_PART('year', atracacao_efetiva) = :year
         AND finalidade_embarcacao in (
-          'Transporte de Granel Sólido',
-          'Transporte de Granel Líquido'
+          'Transporte de Granel Sólido'
         )
       GROUP BY month
     """, values={'year': year})
