@@ -38,7 +38,7 @@ async def prioritize():
     pqueue_query = cost_queue.select()
     pqueue_list = await database.fetch_all(pqueue_query)
 
-    ship_quantity_query = select([berths.c.id, berths.c.has_fiscalization, berths.c.depth, func.count(berths_priority_queue.c.ship_details).label('count')]).select_from(berths_priority_queue.join(berths)).group_by(berths.c.id)
+    ship_quantity_query = select([berths.c.id, berths.c.has_fiscalization, berths.c.depth, func.count(berths_priority_queue.c.ship_details).label('count')]).select_from(berths.join(berths_priority_queue, isouter=True)).group_by(berths.c.id)
     berth_and_ship_quantity = await database.fetch_all(ship_quantity_query)
 
     queued_ships = [
